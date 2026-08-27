@@ -1,0 +1,127 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // 0. Global Safety Net
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Phase 3: Primitives
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return isSignedIn() && request.auth.uid == userId;
+    }
+
+    function isValidId(id) {
+      return id is string && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    function getUserData() {
+      return get(/databases/$(database)/documents/users/$(request.auth.uid)).data;
+    }
+
+    function isAdmin() {
+      return isSignedIn() && 
+             exists(/databases/$(database)/documents/users/$(request.auth.uid)) && 
+             getUserData().role == 'admin';
+    }
+
+    function incoming() {
+      return request.resource.data;
+    }
+
+    function existing() {
+      return resource.data;
+    }
+
+    // 2. Validation Blueprints
+    function isValidUser(data) {
+      return data.keys().hasAll(['uid', 'email', 'role']) &&
+             data.uid is string && data.uid.size() <= 128 &&
+             data.email is string && data.email.size() <= 256 &&
+             data.role in ['admin', 'condomino'];
+    }
+
+    function isValidCondo(data) {
+      return data.keys().hasAll(['name', 'address', 'adminUid']) &&
+             data.name is string && data.name.size() <= 100 &&
+             data.address is string && data.address.size() <= 200 &&
+             data.adminUid == request.auth.uid;
+    }
+
+    function isValidUnit(data) {
+      return data.keys().hasAll(['condoId', 'number', 'millesimi', 'ownerName']) &&
+             data.condoId is string &&
+             data.number is string && data.number.size() <= 50 &&
+             data.millesimi is number && data.millesimi >= 0 && data.millesimi <= 1000 &&
+             data.ownerName is string && data.ownerName.size() <= 100;
+    }
+
+    function isValidExpense(data) {
+      return data.keys().hasAll(['condoId', 'title', 'amount', 'category', 'type']) &&
+             data.condoId is string &&
+             data.title is string && data.title.size() <= 100 &&
+             data.amount is number && 
+             data.category in ['ordinaria', 'straordinaria'];
+    }
+
+    function isValidPayment(data) {
+      return data.keys().hasAll(['condoId', 'unitId', 'title', 'amount', 'dueDate', 'status', 'type']) &&
+             data.condoId is string &&
+             data.unitId is string &&
+             data.title is string && data.title.size() <= 100 &&
+             data.amount is number &&
+             data.status in ['pending', 'paid', 'overdue', 'partial'] &&
+             data.type in ['rate', 'rent', 'extra'] &&
+             (!data.keys().hasAny(['paidAmount']) || data.paidAmount is number) &&
+             (!data.keys().hasAny(['paidAt']) || data.paidAt is string || data.paidAt == null) &&
+             (!data.keys().hasAny(['recipientName']) || data.recipientName is string) &&
+             (!data.keys().hasAny(['recipientUid']) || data.recipientUid is string) &&
+             (!data.keys().hasAny(['recipientType']) || data.recipientType in ['owner', 'tenant']) &&
+             (!data.keys().hasAny(['isRecurring']) || data.isRecurring is bool);
+    }
+
+    // Phase 4: Path Specific Rules
+
+    match /users/{userId} {
+      allow get: if isSignedIn();
+      allow list: if isAdmin(); // Only admins can list users
+      allow create, update: if isOwner(userId) && isValidUser(incoming());
+    }
+
+    match /condos/{condoId} {
+      // 8. Secure List Queries: Force filtering by adminUid or participation
+      allow list: if isSignedIn(); 
+      allow get: if isSignedIn();
+      allow create: if isSignedIn() && isValidCondo(incoming()); 
+      allow update: if isAdmin() && existing().adminUid == request.auth.uid && isValidCondo(incoming());
+      allow delete: if isAdmin() && existing().adminUid == request.auth.uid;
+
+      match /units/{unitId} {
+        allow read: if isSignedIn();
+        allow create, update: if isAdmin() && get(/databases/$(database)/documents/condos/$(condoId)).data.adminUid == request.auth.uid && isValidUnit(incoming());
+        allow delete: if isAdmin() && get(/databases/$(database)/documents/condos/$(condoId)).data.adminUid == request.auth.uid;
+      }
+
+      match /expenses/{expenseId} {
+        allow read: if isSignedIn();
+        allow create, update: if isAdmin() && get(/databases/$(database)/documents/condos/$(condoId)).data.adminUid == request.auth.uid && isValidExpense(incoming());
+        allow delete: if isAdmin() && get(/databases/$(database)/documents/condos/$(condoId)).data.adminUid == request.auth.uid;
+      }
+
+      match /payments/{paymentId} {
+        allow read: if isSignedIn();
+        allow create, update: if isAdmin() && get(/databases/$(database)/documents/condos/$(condoId)).data.adminUid == request.auth.uid && isValidPayment(incoming());
+        allow delete: if isAdmin() && get(/databases/$(database)/documents/condos/$(condoId)).data.adminUid == request.auth.uid;
+      }
+    }
+    
+    // Support Collection for connection testing if needed
+    match /test/connection {
+      allow read: if true;
+    }
+  }
+}

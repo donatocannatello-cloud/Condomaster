@@ -1,0 +1,103 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "User account information and roles",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "email": { "type": "string", "format": "email" },
+        "displayName": { "type": "string" },
+        "role": { "type": "string", "enum": ["admin", "condomino"] }
+      },
+      "required": ["uid", "email", "role"]
+    },
+    "Condominium": {
+      "title": "Condominium",
+      "description": "Property management entity",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "address": { "type": "string" },
+        "adminUid": { "type": "string" },
+        "totalMillesimi": { "type": "number" },
+        "createdAt": { "type": "object" }
+      },
+      "required": ["name", "adminUid"]
+    },
+    "CondoUnit": {
+      "title": "CondoUnit",
+      "description": "Individual unit within a condominium",
+      "type": "object",
+      "properties": {
+        "condoId": { "type": "string" },
+        "number": { "type": "string" },
+        "millesimi": { "type": "number" },
+        "ownerUid": { "type": "string" },
+        "ownerName": { "type": "string" },
+        "tenantUid": { "type": "string" },
+        "tenantName": { "type": "string" }
+      },
+      "required": ["condoId", "number", "millesimi", "ownerName"]
+    },
+    "Expense": {
+      "title": "Expense",
+      "description": "Condominium expense record",
+      "type": "object",
+      "properties": {
+        "condoId": { "type": "string" },
+        "title": { "type": "string" },
+        "amount": { "type": "number" },
+        "category": { "type": "string", "enum": ["ordinaria", "straordinaria"] },
+        "type": { "type": "string" },
+        "date": { "type": "object" },
+        "createdAt": { "type": "object" }
+      },
+      "required": ["condoId", "title", "amount", "category", "type"]
+    },
+    "Payment": {
+      "title": "Payment",
+      "description": "Incoming payments (rates, rents, extra)",
+      "type": "object",
+      "properties": {
+        "condoId": { "type": "string" },
+        "unitId": { "type": "string" },
+        "title": { "type": "string" },
+        "amount": { "type": "number" },
+        "dueDate": { "type": "string" },
+        "status": { "type": "string", "enum": ["pending", "paid", "overdue", "partial"] },
+        "type": { "type": "string", "enum": ["rate", "rent", "extra"] },
+        "paidAt": { "type": "string" },
+        "createdAt": { "type": "object" },
+        "paidAmount": { "type": "number" },
+        "recipientName": { "type": "string" },
+        "recipientUid": { "type": "string" },
+        "recipientType": { "type": "string", "enum": ["owner", "tenant"] },
+        "isRecurring": { "type": "boolean" }
+      },
+      "required": ["condoId", "unitId", "title", "amount", "dueDate", "status", "type"]
+    }
+  },
+  "firestore": {
+    "users/{userId}": {
+      "schema": "UserProfile",
+      "description": "User profiles"
+    },
+    "condos/{condoId}": {
+      "schema": "Condominium",
+      "description": "Condominium details"
+    },
+    "condos/{condoId}/units/{unitId}": {
+      "schema": "CondoUnit",
+      "description": "Units within a condominium"
+    },
+    "condos/{condoId}/expenses/{expenseId}": {
+      "schema": "Expense",
+      "description": "Expenses within a condominium"
+    },
+    "condos/{condoId}/payments/{paymentId}": {
+      "schema": "Payment",
+      "description": "Incoming payments"
+    }
+  }
+}
