@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { getAllAdminPayments, Payment, updatePayment, deletePayment } from '@/src/services/condoService';
-import { serverTimestamp } from 'firebase/firestore';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button, playBeep } from '@/components/ui/button';
@@ -238,7 +237,7 @@ export default function GlobalCreditsView() {
       await updatePayment(payment.condoId, payment.id, { 
         status: 'paid',
         paidAmount: payment.amount,
-        paidAt: serverTimestamp()
+        paidAt: new Date().toISOString()
       });
       toast.success("Pagamento registrato");
       loadAllPayments();

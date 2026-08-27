@@ -1,8 +1,0 @@
-{
-  "name": "CondoManage IT",
-  "description": "App di gestione condomini con ripartizione spese secondo normativa italiana (millesimi proprietari/inquilini).",
-  "requestFramePermissions": [],
-  "majorCapabilities": [
-    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
-  ]
-}

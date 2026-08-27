@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">CondoMaster</string>
+    <string name="title_activity_main">CondoMaster</string>
+    <string name="package_name">it.condomaster.app</string>
+    <string name="custom_url_scheme">it.condomaster.app</string>
+</resources>

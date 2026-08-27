@@ -46,7 +46,6 @@ import {
   PieChart,
   UserPlus,
   Euro,
-  Calendar,
   Layers,
   MapPin,
   Edit2,
@@ -77,7 +76,6 @@ import { format } from 'date-fns';
 import { it } from 'date-fns/locale';
 import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
-import { getCachedAccessToken, requestCalendarAccess } from '../services/authService';
 
 interface AdminCondoDetailProps {
   condo: Condominium;
@@ -90,15 +88,9 @@ export default function AdminCondoDetail({ condo, onBack }: AdminCondoDetailProp
   const [payments, setPayments] = useState<Payment[]>([]);
   const [loading, setLoading] = useState(true);
 
-  // Google Calendar and WhatsApp states
-  const [isGoogleConnected, setIsGoogleConnected] = useState(false);
-  const [isSyncingCalendar, setIsSyncingCalendar] = useState(false);
+  // WhatsApp state
   const [selectedWhatsAppPayment, setSelectedWhatsAppPayment] = useState<Payment | null>(null);
   const [whatsAppMessage, setWhatsAppMessage] = useState('');
-
-  useEffect(() => {
-    setIsGoogleConnected(!!getCachedAccessToken());
-  }, []);
 
   // Emission state
   const [isEmittingRates, setIsEmittingRates] = useState(false);
@@ -402,149 +394,6 @@ export default function AdminCondoDetail({ condo, onBack }: AdminCondoDetailProp
     return expenseSortOrder === 'asc' 
       ? <ChevronUp className="w-3 h-3 ml-1 text-indigo-600 stroke-[3]" /> 
       : <ChevronDown className="w-3 h-3 ml-1 text-indigo-600 stroke-[3]" />;
-  };
-
-  const handleConnectGoogle = async () => {
-    try {
-      const token = await requestCalendarAccess();
-      if (token) {
-        setIsGoogleConnected(true);
-        toast.success("Google Calendar collegato con successo!");
-      }
-    } catch (error: any) {
-      toast.error("Connessione Google Calendar fallita: " + error.message);
-    }
-  };
-
-  const syncPaymentToCalendar = async (payment: Payment) => {
-    const token = getCachedAccessToken();
-    if (!token) {
-      toast.error("Per favore, collega prima il tuo Google Calendar usando l'apposito pulsante.");
-      return;
-    }
-
-    // Confirmation message (Mandatory Workspace Guidelines)
-    const confirmed = window.confirm(
-      `Sincronizzare la scadenza del pagamento "${payment.title}" di €${payment.amount.toLocaleString('it-IT', { minimumFractionDigits: 2 })} su Google Calendar?`
-    );
-    if (!confirmed) return;
-
-    setIsSyncingCalendar(true);
-    try {
-      const unit = units.find(u => u.id === payment.unitId);
-      const dateStr = payment.dueDate; // e.g. "2026-06-30"
-
-      const event = {
-        summary: `⚠️ Scadenza Condo: ${payment.title} (${unit?.number || ''})`,
-        description: `Avviso promemoria di scadenza amministrativa generato da CondoManage IT.\n\nSoggetto: ${payment.recipientName || 'Proprietario'}\nImporto: €${payment.amount}\nStato: ${payment.status === 'overdue' ? 'SCADUTO' : 'In attesa'}`,
-        start: {
-          dateTime: `${dateStr}T09:00:00`,
-          timeZone: 'Europe/Rome'
-        },
-        end: {
-          dateTime: `${dateStr}T10:00:00`,
-          timeZone: 'Europe/Rome'
-        },
-        reminders: {
-          useDefault: false,
-          overrides: [
-            { method: 'popup', minutes: 1440 }, // 1 giorno prima
-            { method: 'popup', minutes: 60 }     // 1 ora prima
-          ]
-        }
-      };
-
-      const response = await fetch('https://www.googleapis.com/calendar/v3/calendars/primary/events', {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${token}`,
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(event)
-      });
-
-      if (!response.ok) {
-        throw new Error("Errore durante il salvataggio: " + response.statusText);
-      }
-
-      toast.success("Promemoria scadenza salvato correttamente sul tuo Google Calendar!");
-    } catch (error: any) {
-      toast.error("Impossibile salvare sul calendario: " + error.message);
-    } finally {
-      setIsSyncingCalendar(false);
-    }
-  };
-
-  const syncAllOverdueToCalendar = async () => {
-    const token = getCachedAccessToken();
-    if (!token) {
-      toast.error("Collega prima il tuo Google Calendar.");
-      return;
-    }
-
-    const overduePayments = payments.filter(p => p.status === 'overdue');
-    if (overduePayments.length === 0) {
-      toast.error("Nessun pagamento scaduto da sincronizzare (Stato: Scaduto).");
-      return;
-    }
-
-    // Confirmation message (Mandatory Workspace Guidelines)
-    const confirmed = window.confirm(
-      `Confermi la sincronizzazione di massa di tutti i ${overduePayments.length} pagamenti SCADUTI su Google Calendar?`
-    );
-    if (!confirmed) return;
-
-    setIsSyncingCalendar(true);
-    let successCount = 0;
-
-    for (const payment of overduePayments) {
-      try {
-        const unit = units.find(u => u.id === payment.unitId);
-        const dateStr = payment.dueDate;
-
-        const event = {
-          summary: `⚠️ SOLLECITO COATTIVO: ${payment.title} (${unit?.number || ''})`,
-          description: `Procedura di sollecito per morosità.\n\nSoggetto: ${payment.recipientName}\nImporto: €${payment.amount}\nStato: MOROSO / SCADUTO`,
-          start: {
-            dateTime: `${dateStr}T09:00:00`,
-            timeZone: 'Europe/Rome'
-          },
-          end: {
-            dateTime: `${dateStr}T10:00:00`,
-            timeZone: 'Europe/Rome'
-          },
-          reminders: {
-            useDefault: false,
-            overrides: [
-              { method: 'popup', minutes: 1440 },
-              { method: 'popup', minutes: 60 }
-            ]
-          }
-        };
-
-        const response = await fetch('https://www.googleapis.com/calendar/v3/calendars/primary/events', {
-          method: 'POST',
-          headers: {
-            'Authorization': `Bearer ${token}`,
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(event)
-        });
-
-        if (response.ok) {
-          successCount++;
-        }
-      } catch (err) {
-        console.error(err);
-      }
-    }
-
-    setIsSyncingCalendar(false);
-    if (successCount > 0) {
-      toast.success(`Sincronizzati ${successCount}/${overduePayments.length} solleciti di morosità su Google Calendar!`);
-    } else {
-      toast.error("Si è verificato un errore durante la sincronizzazione.");
-    }
   };
 
   const openWhatsAppPrompt = (payment: Payment) => {
@@ -1339,58 +1188,6 @@ export default function AdminCondoDetail({ condo, onBack }: AdminCondoDetailProp
             </Card>
 
             <div className="lg:col-span-2 space-y-6">
-              <Card className="rounded-2xl border border-slate-200 p-6 shadow-xl shadow-slate-200/50 bg-white overflow-hidden">
-                <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-                  <div className="flex items-center gap-3">
-                    <div className="p-3 bg-red-50 text-red-600 rounded-xl border border-red-100 flex items-center justify-center">
-                      <Calendar className="w-5 h-5 stroke-[2.5]" />
-                    </div>
-                    <div>
-                      <h4 className="text-md font-black text-slate-900 uppercase tracking-tight">Sincronizzazione Google Calendar</h4>
-                      <p className="text-[10px] text-slate-400 font-bold uppercase mt-0.5">
-                        {isGoogleConnected 
-                          ? "Connesso all'account Google - Pronto per impostare allarmi di scadenze" 
-                          : "Collega Google Calendar per ricevere allarmi automatici sul telefono per pagamenti scaduti"}
-                      </p>
-                    </div>
-                  </div>
-                  <div className="flex gap-2">
-                    {!isGoogleConnected ? (
-                      <Button 
-                        type="button"
-                        onClick={handleConnectGoogle}
-                        className="bg-indigo-600 hover:bg-indigo-700 text-white font-black text-[10px] uppercase tracking-widest px-4 h-9 rounded-xl flex items-center gap-2"
-                      >
-                        Connetti Google Calendar
-                      </Button>
-                    ) : (
-                      <>
-                        <Button 
-                          type="button"
-                          onClick={syncAllOverdueToCalendar}
-                          disabled={isSyncingCalendar}
-                          className="bg-red-600 hover:bg-red-700 text-white font-black text-[10px] uppercase tracking-widest px-4 h-9 rounded-xl flex items-center gap-2"
-                        >
-                          {isSyncingCalendar ? "Sincronizzazione..." : "Sincronizza Scadenze Scadute"}
-                        </Button>
-                        <Button 
-                          type="button"
-                          variant="outline"
-                          onClick={() => {
-                            const confirmed = window.confirm("Sei sicuro di voler scollegare l'account Google Calendar dall'applicazione?");
-                            if (confirmed) {
-                              setIsGoogleConnected(false);
-                            }
-                          }}
-                          className="border-slate-200 hover:bg-slate-50 text-slate-500 font-extrabold text-[10px] uppercase tracking-widest px-4 h-9 rounded-xl"
-                        >
-                          Scollega
-                        </Button>
-                      </>
-                    )}
-                  </div>
-                </div>
-              </Card>
 
               <Card className="rounded-2xl border border-slate-200 p-0 overflow-hidden shadow-xl shadow-slate-200/50 bg-white">
                  <div className="px-8 py-6 bg-slate-50 border-b border-slate-200 flex items-center justify-between">
@@ -1476,19 +1273,6 @@ export default function AdminCondoDetail({ condo, onBack }: AdminCondoDetailProp
                                    >
                                      <MessageSquare className="w-4 h-4" />
                                    </Button>
-                                   
-                                   {isGoogleConnected && (
-                                     <Button 
-                                       type="button"
-                                       variant="ghost" 
-                                       size="icon" 
-                                       className="h-8 w-8 rounded-lg text-red-500 hover:text-red-600 hover:bg-red-55" 
-                                       onClick={() => syncPaymentToCalendar(p)} 
-                                       title="Sincronizza su Google Calendar"
-                                     >
-                                       <Calendar className="w-4 h-4" />
-                                     </Button>
-                                   )}
 
                                    <Button type="button" variant="ghost" size="icon" className="h-8 w-8 rounded-lg text-emerald-500 hover:text-emerald-600 hover:bg-emerald-50" onClick={() => markAsPaid(p)} title="Segna come Saldato">
                                      <CheckCircle2 className="w-4 h-4" />
