@@ -10,9 +10,13 @@ on:
           Optional: build a "dev shell" APK that loads a live server
           (e.g. http://127.0.0.1:5173 for a Vite dev server running
           on the same phone via Termux) instead of bundling dist/.
-          Leave empty for a normal offline production APK.
+          Leave empty for a normal offline production APK. A dev-shell
+          build is never published to the stable "latest" release.
         required: false
         default: ''
+
+permissions:
+  contents: write
 
 jobs:
   build:
@@ -24,7 +28,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
           cache: npm
 
       - name: Install dependencies
@@ -52,6 +56,8 @@ jobs:
 
       - name: Build debug APK
         working-directory: android
+        env:
+          ANDROID_VERSION_CODE: ${{ github.run_number }}
         run: ./gradlew assembleDebug --no-daemon
 
       - name: Upload APK artifact
@@ -60,3 +66,21 @@ jobs:
           name: condomaster-debug-apk
           path: android/app/build/outputs/apk/debug/app-debug.apk
           if-no-files-found: error
+
+      - name: Rename APK for release
+        if: ${{ github.event.inputs.server_url == '' }}
+        run: cp android/app/build/outputs/apk/debug/app-debug.apk condomaster.apk
+
+      - name: Publish to stable "latest" release
+        if: ${{ github.event.inputs.server_url == '' }}
+        uses: ncipollo/release-action@v1
+        with:
+          tag: latest
+          name: Latest build
+          allowUpdates: true
+          replacesArtifacts: true
+          artifacts: condomaster.apk
+          body: |
+            Build automatica da commit ${{ github.sha }} (run #${{ github.run_number }}).
+            Link di download stabile, sempre lo stesso:
+            https://github.com/${{ github.repository }}/releases/download/latest/condomaster.apk

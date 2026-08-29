@@ -90,6 +90,10 @@ export default function App() {
           </div>
         </main>
       </div>
+
+      <div className="fixed bottom-2 right-3 text-[9px] font-mono text-slate-300 select-none pointer-events-none z-50">
+        build {__BUILD_ID__}
+      </div>
     </div>
   );
 }
