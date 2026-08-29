@@ -499,7 +499,7 @@ export default function GlobalCreditsView() {
 
       <Card className="rounded-2xl border border-slate-200 p-0 overflow-hidden shadow-xl shadow-slate-200/50">
         <div className="px-6 sm:px-8 py-6 bg-slate-50 border-b border-slate-200 flex flex-col lg:flex-row justify-between lg:items-center gap-6">
-          <div className="w-full lg:w-auto overflow-x-auto no-scrollbar pb-1.5">
+          <div className="w-full lg:w-auto overflow-x-auto no-scrollbar scroll-fade-x pb-1.5">
             <div className="flex bg-white p-1 rounded-xl border border-slate-200 w-max">
               <FilterTab active={filter === 'all'} onClick={() => setFilter('all')} label="Tutti" />
               <FilterTab active={filter === 'pending'} onClick={() => setFilter('pending')} label="Pendenti" />

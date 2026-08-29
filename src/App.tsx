@@ -11,7 +11,7 @@ export default function App() {
 
   return (
     <div className="min-h-screen text-slate-900 font-sans selection:bg-indigo-600 selection:text-white bg-slate-50">
-      <Toaster position="top-right" />
+      <Toaster position="bottom-center" />
 
       <div className="flex flex-col min-h-screen">
         <header className="sticky top-0 z-40 w-full border-b border-slate-200 bg-white shadow-sm">

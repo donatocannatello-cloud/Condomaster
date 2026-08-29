@@ -74,6 +74,14 @@
   }
 }
 
+/* Fades the right edge of a horizontally-scrollable strip (tabs, filter
+   pills) so on mobile it's visually obvious there's more to swipe to,
+   instead of the row looking like it simply ends mid-item. */
+@utility scroll-fade-x {
+  -webkit-mask-image: linear-gradient(to right, black calc(100% - 28px), transparent);
+  mask-image: linear-gradient(to right, black calc(100% - 28px), transparent);
+}
+
 @layer base {
   body {
     background-color: var(--color-slate-50);

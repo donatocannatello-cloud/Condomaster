@@ -551,7 +551,7 @@ export default function AdminCondoDetail({ condo, onBack }: AdminCondoDetailProp
       </div>
 
       <Tabs defaultValue="overview" className="w-full">
-        <div className="w-full overflow-x-auto no-scrollbar pb-1.5 mb-6">
+        <div className="w-full overflow-x-auto no-scrollbar scroll-fade-x pb-1.5 mb-6">
           <TabsList className="bg-slate-100 p-1 rounded-xl border border-slate-200 h-11 shadow-inner flex w-max sm:w-auto min-w-full">
             <TabsTrigger value="overview" className="rounded-lg gap-2 data-[state=active]:bg-white data-[state=active]:text-indigo-700 data-[state=active]:shadow-sm text-slate-500 transition-all px-5 sm:px-6 font-black text-[9px] uppercase tracking-widest whitespace-nowrap"><Layers className="w-3.5 h-3.5 stroke-[3]" /> Panoramica</TabsTrigger>
             <TabsTrigger value="units" className="rounded-lg gap-2 data-[state=active]:bg-white data-[state=active]:text-indigo-700 data-[state=active]:shadow-sm text-slate-500 transition-all px-5 sm:px-6 font-black text-[9px] uppercase tracking-widest whitespace-nowrap"><Users className="w-3.5 h-3.5 stroke-[3]" /> Anagrafica</TabsTrigger>
