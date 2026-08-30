@@ -147,7 +147,7 @@ export default function AdminDashboard({
                 activeTab === 'credits' ? 'Gestione Crediti' : 
                 'Impostazioni Database'}
              </h2>
-             <p className="text-slate-400 text-[10px] font-black uppercase tracking-widest mt-1">Pannello di controllo amministrativo</p>
+             <p className="text-slate-400 text-xs font-black uppercase tracking-widest mt-1">Pannello di controllo amministrativo</p>
           </div>
         </div>
 
@@ -171,14 +171,14 @@ export default function AdminDashboard({
                       <CardTitle className="text-3xl font-black text-white tracking-tighter">
                         {editingCondo ? 'Modifica Stabile' : 'Nuovo Stabile'}
                       </CardTitle>
-                      <CardDescription className="text-slate-400 font-bold uppercase text-[11px] tracking-[0.2em] mt-3">
+                      <CardDescription className="text-slate-400 font-bold uppercase text-sm tracking-[0.2em] mt-3">
                         {editingCondo ? 'Aggiornamento Dati Registro' : 'Registrazione Ufficiale Amministrativa'}
                       </CardDescription>
                     </div>
                     <form onSubmit={handleAddCondo}>
                       <CardContent className="space-y-8 p-10 pt-10">
                         <div className="space-y-3">
-                          <Label htmlFor="name" className="text-slate-900 font-black text-[11px] uppercase tracking-widest opacity-60">Denominazione Condominio</Label>
+                          <Label htmlFor="name" className="text-slate-900 font-black text-sm uppercase tracking-widest opacity-60">Denominazione Condominio</Label>
                           <Input 
                             id="name" 
                             placeholder="es. Residence Magnolia" 
@@ -188,7 +188,7 @@ export default function AdminDashboard({
                           />
                         </div>
                         <div className="space-y-3">
-                          <Label htmlFor="address" className="text-slate-900 font-black text-[11px] uppercase tracking-widest opacity-60">Ubicazione / Indirizzo</Label>
+                          <Label htmlFor="address" className="text-slate-900 font-black text-sm uppercase tracking-widest opacity-60">Ubicazione / Indirizzo</Label>
                           <Input 
                             id="address" 
                             placeholder="es. Via Roma 12, Milano" 
@@ -199,7 +199,7 @@ export default function AdminDashboard({
                         </div>
                       </CardContent>
                       <CardFooter className="flex gap-4 p-10 pt-0">
-                        <Button variant="ghost" type="button" onClick={() => { setShowAddModal(false); setEditingCondo(null); setNewCondo({name:'',address:''}); }} className="flex-1 h-16 rounded-2xl text-slate-400 hover:text-slate-600 hover:bg-slate-50 uppercase text-[11px] font-black tracking-widest">
+                        <Button variant="ghost" type="button" onClick={() => { setShowAddModal(false); setEditingCondo(null); setNewCondo({name:'',address:''}); }} className="flex-1 h-16 rounded-2xl text-slate-400 hover:text-slate-600 hover:bg-slate-50 uppercase text-sm font-black tracking-widest">
                           Annulla
                         </Button>
                         <Button type="submit" className="bg-indigo-600 text-white hover:bg-indigo-700 font-black h-16 rounded-2xl shadow-xl shadow-indigo-100 px-10 transition-all hover:scale-[1.02]">
@@ -252,7 +252,7 @@ export default function AdminDashboard({
                         }`}>
                           {condo.name.includes("Patrimonio Personale") ? <Wallet className="w-6 h-6" /> : <Building2 className="w-6 h-6" />}
                         </div>
-                        <CardTitle className="text-slate-900 text-xl font-black tracking-tight leading-tight">
+                        <CardTitle className="text-slate-900 text-xl font-black tracking-tight leading-tight min-w-0 break-words">
                           {condo.name}
                         </CardTitle>
                       </div>
@@ -265,14 +265,14 @@ export default function AdminDashboard({
                       <div className="flex gap-2 pt-1">
                         <Button 
                           variant="outline" 
-                          className="flex-1 h-9 rounded-lg bg-white text-slate-500 hover:text-indigo-600 hover:bg-indigo-50 border-slate-200 transition-all font-black uppercase text-[8px] tracking-widest"
+                          className="flex-1 h-9 rounded-lg bg-white text-slate-500 hover:text-indigo-600 hover:bg-indigo-50 border-slate-200 transition-all font-black uppercase text-xs tracking-widest"
                           onClick={(e) => startEdit(e, condo)}
                         >
                           <Edit2 className="w-3 h-3 mr-1.5" /> Modifica
                         </Button>
                         <Button 
                           variant="outline" 
-                          className="flex-1 h-9 rounded-lg bg-white text-slate-500 hover:text-red-600 hover:bg-red-50 border-slate-200 transition-all font-black uppercase text-[8px] tracking-widest"
+                          className="flex-1 h-9 rounded-lg bg-white text-slate-500 hover:text-red-600 hover:bg-red-50 border-slate-200 transition-all font-black uppercase text-xs tracking-widest"
                           onClick={(e) => { e.stopPropagation(); setCondoToDelete(condo.id); }}
                         >
                           <Trash2 className="w-3 h-3 mr-1.5" /> Elimina
@@ -282,18 +282,18 @@ export default function AdminDashboard({
                     <CardContent className="px-6 flex-1">
                       <div className="p-4 bg-slate-50 rounded-2xl border border-slate-100 flex items-center justify-between group-hover:bg-indigo-50/50 transition-colors">
                         <div className="flex flex-col">
-                          <span className="text-[9px] text-slate-400 font-black uppercase tracking-widest">Anagrafica</span>
+                          <span className="text-xs text-slate-400 font-black uppercase tracking-widest">Anagrafica</span>
                           <span className="text-lg font-black text-slate-900">Completa</span>
                         </div>
                         <div className="h-8 w-px bg-slate-200" />
                         <div className="flex flex-col text-right">
-                          <span className="text-[9px] text-slate-400 font-black uppercase tracking-widest">Contabilità</span>
+                          <span className="text-xs text-slate-400 font-black uppercase tracking-widest">Contabilità</span>
                           <span className="text-lg font-black text-indigo-600">Attiva</span>
                         </div>
                       </div>
                     </CardContent>
                     <CardFooter className="pt-3 p-6 border-t border-slate-50 bg-slate-50/50 mt-3 group-hover:bg-white transition-colors">
-                      <Button variant="ghost" className="w-full h-11 justify-between group-hover:bg-indigo-600 group-hover:text-white rounded-xl text-slate-500 font-black uppercase text-[10px] tracking-widest transition-all">
+                      <Button variant="ghost" className="w-full h-11 justify-between group-hover:bg-indigo-600 group-hover:text-white rounded-xl text-slate-500 font-black uppercase text-xs tracking-widest transition-all">
                         PANNELLO DI GESTIONE <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1.5" />
                       </Button>
                     </CardFooter>
@@ -305,12 +305,12 @@ export default function AdminDashboard({
 
           {activeTab === 'condos' && visibleCondos.length > 0 && (
             <div className="mt-12 flex justify-center pb-12">
-              <Button 
-                variant="outline" 
-                onClick={() => setShowAddModal(true)} 
-                className="rounded-2xl h-14 px-10 border-slate-200 text-slate-400 hover:text-indigo-600 hover:bg-indigo-50/50 transition-all font-black uppercase text-[10px] tracking-widest border-2 border-dashed"
+              <Button
+                variant="outline"
+                onClick={() => setShowAddModal(true)}
+                className="w-full sm:w-auto min-h-14 px-10 py-3 rounded-2xl border-slate-200 text-slate-400 hover:text-indigo-600 hover:bg-indigo-50/50 transition-all font-black uppercase text-xs tracking-widest border-2 border-dashed whitespace-normal text-center"
               >
-                <Plus className="w-4 h-4 mr-2 stroke-[3]" /> REGISTRA NUOVO CONDOMINIO
+                <Plus className="w-4 h-4 mr-2 stroke-[3] shrink-0" /> REGISTRA NUOVO CONDOMINIO
               </Button>
             </div>
           )}
@@ -343,18 +343,18 @@ export default function AdminDashboard({
                   <p className="text-slate-500 font-medium text-xs leading-relaxed">
                     Sei sicuro? Tutti i dati relativi a <span className="font-black text-slate-900">&quot;{condos.find(c => c.id === condoToDelete)?.name}&quot;</span> (unità, spese, incassi) andranno persi definitivamente.
                   </p>
-                  <p className="text-red-500 font-bold text-[9px] uppercase tracking-widest mt-6 bg-red-50 py-2 rounded-lg italic">L&apos;operazione è irreversibile</p>
+                  <p className="text-red-500 font-bold text-xs uppercase tracking-widest mt-6 bg-red-50 py-2 rounded-lg italic">L&apos;operazione è irreversibile</p>
                 </div>
                 <div className="flex gap-3 px-8 pb-8">
                   <Button 
                     variant="ghost" 
-                    className="flex-1 h-12 rounded-xl text-slate-400 font-black uppercase text-[10px] tracking-widest"
+                    className="flex-1 h-12 rounded-xl text-slate-400 font-black uppercase text-xs tracking-widest"
                     onClick={() => setCondoToDelete(null)}
                   >
                     Annulla
                   </Button>
                   <Button 
-                    className="flex-1 bg-red-600 text-white hover:bg-red-700 h-12 rounded-xl font-black shadow-lg shadow-red-100 uppercase text-[10px] tracking-widest"
+                    className="flex-1 bg-red-600 text-white hover:bg-red-700 h-12 rounded-xl font-black shadow-lg shadow-red-100 uppercase text-xs tracking-widest"
                     onClick={() => handleDeleteCondo(condoToDelete)}
                   >
                     Elimina Tutto

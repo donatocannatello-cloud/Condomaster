@@ -543,7 +543,7 @@ export default function AdminCondoDetail({ condo, onBack }: AdminCondoDetailProp
           <h2 className="text-2xl sm:text-3xl font-black tracking-tight text-slate-900 uppercase">
             {condo.name}
           </h2>
-          <div className="flex items-center gap-2 text-slate-500 font-bold mt-0.5 uppercase text-[9px] sm:text-[10px] tracking-widest break-all">
+          <div className="flex items-center gap-2 text-slate-500 font-bold mt-0.5 uppercase text-xs sm:text-xs tracking-widest break-all">
             <MapPin className="w-3.5 h-3.5 text-indigo-500" />
             {condo.address}
           </div>
@@ -553,11 +553,11 @@ export default function AdminCondoDetail({ condo, onBack }: AdminCondoDetailProp
       <Tabs defaultValue="overview" className="w-full">
         <div className="w-full overflow-x-auto no-scrollbar scroll-fade-x pb-1.5 mb-6">
           <TabsList className="bg-slate-100 p-1 rounded-xl border border-slate-200 h-11 shadow-inner flex w-max sm:w-auto min-w-full">
-            <TabsTrigger value="overview" className="rounded-lg gap-2 data-[state=active]:bg-white data-[state=active]:text-indigo-700 data-[state=active]:shadow-sm text-slate-500 transition-all px-5 sm:px-6 font-black text-[9px] uppercase tracking-widest whitespace-nowrap"><Layers className="w-3.5 h-3.5 stroke-[3]" /> Panoramica</TabsTrigger>
-            <TabsTrigger value="units" className="rounded-lg gap-2 data-[state=active]:bg-white data-[state=active]:text-indigo-700 data-[state=active]:shadow-sm text-slate-500 transition-all px-5 sm:px-6 font-black text-[9px] uppercase tracking-widest whitespace-nowrap"><Users className="w-3.5 h-3.5 stroke-[3]" /> Anagrafica</TabsTrigger>
-            <TabsTrigger value="expenses" className="rounded-lg gap-2 data-[state=active]:bg-white data-[state=active]:text-indigo-700 data-[state=active]:shadow-sm text-slate-500 transition-all px-5 sm:px-6 font-black text-[9px] uppercase tracking-widest whitespace-nowrap"><Receipt className="w-3.5 h-3.5 stroke-[3]" /> Spese</TabsTrigger>
-            <TabsTrigger value="payments" className="rounded-lg gap-2 data-[state=active]:bg-white data-[state=active]:text-indigo-700 data-[state=active]:shadow-sm text-slate-500 transition-all px-5 sm:px-6 font-black text-[9px] uppercase tracking-widest whitespace-nowrap"><CreditCard className="w-3.5 h-3.5 stroke-[3]" /> Incassi</TabsTrigger>
-            <TabsTrigger value="report" className="rounded-lg gap-2 data-[state=active]:bg-white data-[state=active]:text-indigo-700 data-[state=active]:shadow-sm text-slate-500 transition-all px-5 sm:px-6 font-black text-[9px] uppercase tracking-widest whitespace-nowrap"><Calculator className="w-3.5 h-3.5 stroke-[3]" /> Ripartizione</TabsTrigger>
+            <TabsTrigger value="overview" className="rounded-lg gap-2 data-[state=active]:bg-white data-[state=active]:text-indigo-700 data-[state=active]:shadow-sm text-slate-500 transition-all px-5 sm:px-6 font-black text-xs uppercase tracking-widest whitespace-nowrap"><Layers className="w-3.5 h-3.5 stroke-[3]" /> Panoramica</TabsTrigger>
+            <TabsTrigger value="units" className="rounded-lg gap-2 data-[state=active]:bg-white data-[state=active]:text-indigo-700 data-[state=active]:shadow-sm text-slate-500 transition-all px-5 sm:px-6 font-black text-xs uppercase tracking-widest whitespace-nowrap"><Users className="w-3.5 h-3.5 stroke-[3]" /> Anagrafica</TabsTrigger>
+            <TabsTrigger value="expenses" className="rounded-lg gap-2 data-[state=active]:bg-white data-[state=active]:text-indigo-700 data-[state=active]:shadow-sm text-slate-500 transition-all px-5 sm:px-6 font-black text-xs uppercase tracking-widest whitespace-nowrap"><Receipt className="w-3.5 h-3.5 stroke-[3]" /> Spese</TabsTrigger>
+            <TabsTrigger value="payments" className="rounded-lg gap-2 data-[state=active]:bg-white data-[state=active]:text-indigo-700 data-[state=active]:shadow-sm text-slate-500 transition-all px-5 sm:px-6 font-black text-xs uppercase tracking-widest whitespace-nowrap"><CreditCard className="w-3.5 h-3.5 stroke-[3]" /> Incassi</TabsTrigger>
+            <TabsTrigger value="report" className="rounded-lg gap-2 data-[state=active]:bg-white data-[state=active]:text-indigo-700 data-[state=active]:shadow-sm text-slate-500 transition-all px-5 sm:px-6 font-black text-xs uppercase tracking-widest whitespace-nowrap"><Calculator className="w-3.5 h-3.5 stroke-[3]" /> Ripartizione</TabsTrigger>
           </TabsList>
         </div>
 
@@ -566,11 +566,11 @@ export default function AdminCondoDetail({ condo, onBack }: AdminCondoDetailProp
             <Card className="bg-white border-2 border-slate-100 rounded-2xl shadow-lg shadow-slate-100 overflow-hidden">
               <div className="h-1.5 w-full bg-indigo-600" />
               <CardHeader className="p-6 pb-2">
-                <CardTitle className="text-[9px] uppercase tracking-[0.25em] font-black text-slate-400">Patrimonio Millesimale</CardTitle>
+                <CardTitle className="text-xs uppercase tracking-[0.25em] font-black text-slate-400">Patrimonio Millesimale</CardTitle>
               </CardHeader>
               <CardContent className="p-6 pt-0">
                 <div className="text-4xl font-black text-slate-900 tracking-tighter">1.000<span className="text-slate-200">,00</span></div>
-                <div className="text-[10px] uppercase font-bold text-indigo-600 mt-3 tracking-widest flex items-center gap-2">
+                <div className="text-xs uppercase font-bold text-indigo-600 mt-3 tracking-widest flex items-center gap-2">
                   <div className="w-1.5 h-1.5 rounded-full bg-indigo-600 animate-pulse" />
                   Coefficiente Base Stabile
                 </div>
@@ -580,18 +580,18 @@ export default function AdminCondoDetail({ condo, onBack }: AdminCondoDetailProp
             <Card className="bg-white border-2 border-slate-100 rounded-2xl shadow-lg shadow-slate-100 overflow-hidden">
               <div className="h-1.5 w-full bg-slate-900" />
               <CardHeader className="p-6 pb-2">
-                <CardTitle className="text-[9px] uppercase tracking-[0.25em] font-black text-slate-400">Archivio Fabbricati</CardTitle>
+                <CardTitle className="text-xs uppercase tracking-[0.25em] font-black text-slate-400">Archivio Fabbricati</CardTitle>
               </CardHeader>
               <CardContent className="p-6 pt-0">
                 <div className="text-4xl font-black text-slate-900 tracking-tighter">{units.length}</div>
-                <p className="text-[10px] uppercase font-bold text-slate-500 mt-3 tracking-widest">Unità Immobiliari Censite</p>
+                <p className="text-xs uppercase font-bold text-slate-500 mt-3 tracking-widest">Unità Immobiliari Censite</p>
               </CardContent>
             </Card>
 
             <Card className="bg-white border-2 border-slate-100 rounded-2xl shadow-lg shadow-slate-100 overflow-hidden">
               <div className="h-1.5 w-full bg-emerald-500" />
               <CardHeader className="p-6 pb-2">
-                <CardTitle className="text-[9px] uppercase tracking-[0.25em] font-black text-slate-400">Saldo Netto Cassa</CardTitle>
+                <CardTitle className="text-xs uppercase tracking-[0.25em] font-black text-slate-400">Saldo Netto Cassa</CardTitle>
               </CardHeader>
               <CardContent className="p-6 pt-0">
                 <div className={`text-4xl font-black tracking-tighter ${
@@ -601,7 +601,7 @@ export default function AdminCondoDetail({ condo, onBack }: AdminCondoDetailProp
                 }`}>
                   €{(payments.filter(p => p.status === 'paid').reduce((sum, p) => sum + p.amount, 0) - expenses.reduce((sum, e) => sum + e.amount, 0)).toLocaleString('it-IT', { minimumFractionDigits: 2 })}
                 </div>
-                <p className="text-[10px] uppercase font-bold text-emerald-600 mt-3 tracking-widest">Saldo Entrate - Uscite</p>
+                <p className="text-xs uppercase font-bold text-emerald-600 mt-3 tracking-widest">Saldo Entrate - Uscite</p>
               </CardContent>
             </Card>
           </div>
@@ -619,7 +619,7 @@ export default function AdminCondoDetail({ condo, onBack }: AdminCondoDetailProp
                     <h3 className="text-white font-black text-lg tracking-tight uppercase">
                       {editingUnit ? 'Modifica Unità' : 'Nuova Iscrizione'}
                     </h3>
-                    <p className="text-[9px] text-white/40 uppercase font-black tracking-[0.2em] mt-0.5">
+                    <p className="text-xs text-white/40 uppercase font-black tracking-[0.2em] mt-0.5">
                       {editingUnit ? 'Aggiornamento Dati Catastali' : 'Anagrafica Condominiale'}
                     </p>
                    </div>
@@ -628,42 +628,42 @@ export default function AdminCondoDetail({ condo, onBack }: AdminCondoDetailProp
               <form onSubmit={handleAddUnit}>
                 <CardContent className="space-y-6 p-6">
                   <div className="space-y-2">
-                    <Label className="text-slate-900 font-black text-[10px] uppercase tracking-widest opacity-60">Identificativo Unità</Label>
+                    <Label className="text-slate-900 font-black text-xs uppercase tracking-widest opacity-60">Identificativo Unità</Label>
                     <Input className="pro-input h-11 text-xs font-bold" value={newUnit.number} onChange={e => setNewUnit({...newUnit, number: e.target.value})} placeholder="es. Int. 1 - Scala A" />
                   </div>
                   <div className="space-y-2">
-                    <Label className="text-slate-900 font-black text-[10px] uppercase tracking-widest opacity-60">Quota Millesimale</Label>
+                    <Label className="text-slate-900 font-black text-xs uppercase tracking-widest opacity-60">Quota Millesimale</Label>
                     <Input className="pro-input h-11 font-mono text-indigo-700 text-xl font-black" type="number" step="0.01" value={newUnit.millesimi} onChange={e => setNewUnit({...newUnit, millesimi: e.target.value as any})} placeholder="000.00" />
                   </div>
                   <div className="pt-4 space-y-6 border-t border-slate-100">
                     <div className="space-y-4">
                       <div className="space-y-1.5">
-                        <Label className="text-slate-900 font-black text-[10px] uppercase tracking-widest opacity-60">Nominativo Proprietario</Label>
+                        <Label className="text-slate-900 font-black text-xs uppercase tracking-widest opacity-60">Nominativo Proprietario</Label>
                         <Input className="pro-input h-10 text-sm font-bold" value={newUnit.ownerName} onChange={e => setNewUnit({...newUnit, ownerName: e.target.value})} placeholder="Rossi Mario" />
                       </div>
                       <div className="space-y-1.5">
-                        <Label className="text-slate-900 font-black text-[10px] uppercase tracking-widest opacity-60">Telefono Proprietario (WhatsApp)</Label>
+                        <Label className="text-slate-900 font-black text-xs uppercase tracking-widest opacity-60">Telefono Proprietario (WhatsApp)</Label>
                         <Input className="pro-input h-10 text-xs font-medium" value={newUnit.ownerPhone || ''} onChange={e => setNewUnit({...newUnit, ownerPhone: e.target.value})} placeholder="+39 333 1234567" />
                       </div>
                     </div>
                     <div className="space-y-4 pt-4 border-t border-dashed border-slate-100">
                       <div className="space-y-1.5">
-                        <Label className="text-slate-900 font-black text-[10px] uppercase tracking-widest opacity-60">Conduttore / Inquilino</Label>
+                        <Label className="text-slate-900 font-black text-xs uppercase tracking-widest opacity-60">Conduttore / Inquilino</Label>
                         <Input className="pro-input h-10 text-sm font-medium" value={newUnit.tenantName} onChange={e => setNewUnit({...newUnit, tenantName: e.target.value})} placeholder="Opzionale" />
                       </div>
                       <div className="space-y-1.5">
-                        <Label className="text-slate-900 font-black text-[10px] uppercase tracking-widest opacity-60">Telefono Conduttore (WhatsApp)</Label>
+                        <Label className="text-slate-900 font-black text-xs uppercase tracking-widest opacity-60">Telefono Conduttore (WhatsApp)</Label>
                         <Input className="pro-input h-10 text-xs font-medium" value={newUnit.tenantPhone || ''} onChange={e => setNewUnit({...newUnit, tenantPhone: e.target.value})} placeholder="+39 333 7654321" />
                       </div>
                     </div>
                   </div>
                 </CardContent>
                 <CardFooter className="p-6 pt-0 flex flex-col gap-2">
-                  <Button type="submit" className="w-full bg-slate-900 text-white hover:bg-indigo-600 font-black h-11 rounded-xl shadow-lg transition-all hover:scale-[1.02] active:scale-[0.98] uppercase tracking-widest text-[10px]">
+                  <Button type="submit" className="w-full bg-slate-900 text-white hover:bg-indigo-600 font-black h-11 rounded-xl shadow-lg transition-all hover:scale-[1.02] active:scale-[0.98] uppercase tracking-widest text-xs">
                     {editingUnit ? 'CONFERMA MODIFICA' : 'REGISTRA UNITÀ'}
                   </Button>
                   {editingUnit && (
-                    <Button variant="ghost" className="w-full h-8 text-[9px] font-black tracking-widest uppercase text-slate-400" onClick={() => { setEditingUnit(null); setNewUnit({number:'',millesimi:'' as unknown as number,ownerName:'',ownerPhone:'',tenantName:'',tenantPhone:''}); }}>
+                    <Button variant="ghost" className="w-full h-8 text-xs font-black tracking-widest uppercase text-slate-400" onClick={() => { setEditingUnit(null); setNewUnit({number:'',millesimi:'' as unknown as number,ownerName:'',ownerPhone:'',tenantName:'',tenantPhone:''}); }}>
                       Annulla Modifica
                     </Button>
                   )}
@@ -675,44 +675,44 @@ export default function AdminCondoDetail({ condo, onBack }: AdminCondoDetailProp
               <div className="px-8 py-6 bg-slate-50 border-b border-slate-200 flex items-center justify-between">
                 <div>
                   <h3 className="text-2xl font-black text-slate-900 tracking-tighter uppercase">Anagrafica Fabbricato</h3>
-                  <p className="text-slate-400 text-[9px] font-black uppercase tracking-[0.2em] mt-1.5">Dati catastali e coefficienti di riparto</p>
+                  <p className="text-slate-400 text-xs font-black uppercase tracking-[0.2em] mt-1.5">Dati catastali e coefficienti di riparto</p>
                 </div>
-                <Badge className="bg-indigo-100 text-indigo-700 font-black px-3 py-1 rounded-full border-none uppercase tracking-widest text-[9px]">
+                <Badge className="bg-indigo-100 text-indigo-700 font-black px-3 py-1 rounded-full border-none uppercase tracking-widest text-xs">
                   {units.length} Unit&agrave;
                 </Badge>
               </div>
-              <CardContent className="p-0 overflow-x-auto">
-                <Table className="min-w-[600px] lg:min-w-0">
+              <CardContent className="p-0 md:overflow-x-auto">
+                <Table>
                   <TableHeader>
                     <TableRow className="border-slate-200 bg-slate-50 hover:bg-slate-50 h-14">
-                      <TableHead className="text-slate-400 uppercase text-[10px] font-black tracking-widest px-8">U.I.</TableHead>
-                      <TableHead className="text-slate-400 uppercase text-[10px] font-black tracking-widest">Soggetto / Nominativo</TableHead>
-                      <TableHead className="text-right text-slate-400 uppercase text-[10px] font-black tracking-widest px-8">Azioni / Coeff.</TableHead>
+                      <TableHead className="text-slate-400 uppercase text-xs font-black tracking-widest px-8">U.I.</TableHead>
+                      <TableHead className="text-slate-400 uppercase text-xs font-black tracking-widest">Soggetto / Nominativo</TableHead>
+                      <TableHead className="text-right text-slate-400 uppercase text-xs font-black tracking-widest px-8">Azioni / Coeff.</TableHead>
                     </TableRow>
                   </TableHeader>
                   <TableBody>
                     {units.map(u => (
                       <TableRow key={u.id} className="border-slate-100 hover:bg-slate-50 transition-all h-20 group">
-                        <TableCell className="font-mono font-black text-slate-900 px-8 text-2xl group-hover:text-indigo-600 transition-colors tracking-tighter">
+                        <TableCell label="U.I." className="font-mono font-black text-slate-900 px-8 text-2xl group-hover:text-indigo-600 transition-colors tracking-tighter">
                           {u.number}
                         </TableCell>
-                        <TableCell>
+                        <TableCell label="Soggetto / Nominativo">
                           <div className="flex flex-col">
                             <span className="text-slate-900 font-black text-lg tracking-tight uppercase leading-tight">{u.ownerName}</span>
                             <div className="flex items-center gap-2 mt-1.5">
                               {u.tenantName ? (
-                                <Badge variant="outline" className="text-[9px] uppercase font-black tracking-widest text-indigo-600 border-indigo-200 bg-indigo-50 px-2.5 py-0">
+                                <Badge variant="outline" className="text-xs uppercase font-black tracking-widest text-indigo-600 border-indigo-200 bg-indigo-50 px-2.5 py-0">
                                   Inq: {u.tenantName}
                                 </Badge>
                               ) : (
-                                <Badge variant="outline" className="text-[9px] uppercase font-black tracking-widest text-emerald-600 border-emerald-200 bg-emerald-50 px-2.5 py-0">
+                                <Badge variant="outline" className="text-xs uppercase font-black tracking-widest text-emerald-600 border-emerald-200 bg-emerald-50 px-2.5 py-0">
                                   Piena Proprietà
                                 </Badge>
                               )}
                             </div>
                           </div>
                         </TableCell>
-                        <TableCell className="text-right px-8">
+                        <TableCell label="Azioni / Coeff." className="text-right px-8">
                            <div className="flex justify-end gap-1.5 mb-1">
                               <Button variant="ghost" size="icon" className="h-8 w-8 rounded-lg text-slate-400 hover:text-indigo-600 hover:bg-indigo-50" onClick={() => { setEditingUnit(u); setNewUnit({number:u.number, millesimi:u.millesimi as any, ownerName:u.ownerName, ownerPhone:u.ownerPhone || '', tenantName:u.tenantName || '', tenantPhone:u.tenantPhone || ''}); }}>
                                <Edit2 className="w-4 h-4" />
@@ -722,13 +722,13 @@ export default function AdminCondoDetail({ condo, onBack }: AdminCondoDetailProp
                              </Button>
                            </div>
                            <div className="font-mono font-black text-slate-900 text-xl tracking-tighter leading-none">{u.millesimi.toFixed(2)}</div>
-                           <div className="text-[9px] text-slate-400 font-black uppercase tracking-widest mt-0.5">Caratura Mill.</div>
+                           <div className="text-xs text-slate-400 font-black uppercase tracking-widest mt-0.5">Caratura Mill.</div>
                         </TableCell>
                       </TableRow>
                     ))}
                     {units.length === 0 && (
                       <TableRow>
-                        <TableCell colSpan={3} className="text-center py-48 text-slate-200 uppercase tracking-[0.5em] text-[13px] font-black italic">Archivio Fabbricati Vuoto</TableCell>
+                        <TableCell colSpan={3} className="text-center py-48 text-slate-200 uppercase tracking-[0.5em] text-sm font-black italic">Archivio Fabbricati Vuoto</TableCell>
                       </TableRow>
                     )}
                   </TableBody>
@@ -750,7 +750,7 @@ export default function AdminCondoDetail({ condo, onBack }: AdminCondoDetailProp
                     <h3 className="text-white font-black text-lg tracking-tight uppercase">
                       {editingExpense ? 'Modifica Spesa' : 'Nuova Spesa'}
                     </h3>
-                    <p className="text-[9px] text-white/50 uppercase font-black tracking-[0.2em] mt-0.5">
+                    <p className="text-xs text-white/50 uppercase font-black tracking-[0.2em] mt-0.5">
                       {editingExpense ? 'Aggiornamento Contabile' : 'Contabilità Esercizio'}
                     </p>
                    </div>
@@ -759,11 +759,11 @@ export default function AdminCondoDetail({ condo, onBack }: AdminCondoDetailProp
               <form onSubmit={handleAddExpense}>
                 <CardContent className="space-y-6 p-6 pt-6">
                   <div className="space-y-2">
-                    <Label className="text-slate-900 font-black text-[10px] uppercase tracking-widest opacity-60">Descrizione Oneri</Label>
+                    <Label className="text-slate-900 font-black text-xs uppercase tracking-widest opacity-60">Descrizione Oneri</Label>
                     <Input className="pro-input h-11 font-black text-sm" value={newExpense.title} onChange={e => setNewExpense({...newExpense, title: e.target.value})} placeholder="es. Manutenzione Giardino" />
                   </div>
                   <div className="space-y-2">
-                    <Label className="text-slate-900 font-black text-[10px] uppercase tracking-widest opacity-60">Importo Fattura (€)</Label>
+                    <Label className="text-slate-900 font-black text-xs uppercase tracking-widest opacity-60">Importo Fattura (€)</Label>
                     <Input 
                       className={`pro-input h-11 font-mono text-xl font-black tracking-tighter ${newExpense.amount < 0 ? 'text-red-600' : 'text-emerald-700'}`} 
                       type="number" 
@@ -773,12 +773,12 @@ export default function AdminCondoDetail({ condo, onBack }: AdminCondoDetailProp
                     />
                   </div>
                   <div className="space-y-2">
-                    <Label className="text-slate-900 font-black text-[10px] uppercase tracking-widest opacity-60">Data Fattura</Label>
+                    <Label className="text-slate-900 font-black text-xs uppercase tracking-widest opacity-60">Data Fattura</Label>
                     <Input type="date" className="pro-input h-11 font-bold text-sm" value={newExpense.date} onChange={e => setNewExpense({...newExpense, date: e.target.value})} />
                   </div>
                   <div className="pt-3 space-y-4 border-t border-slate-100">
                     <div className="space-y-2">
-                      <Label className="text-slate-900 font-black text-[10px] uppercase tracking-widest opacity-60">Classificazione</Label>
+                      <Label className="text-slate-900 font-black text-xs uppercase tracking-widest opacity-60">Classificazione</Label>
                       <Select value={newExpense.category} onValueChange={(v: any) => setNewExpense({...newExpense, category: v})}>
                         <SelectTrigger className="pro-input h-10 font-bold text-xs">
                           <SelectValue placeholder="Seleziona">
@@ -793,7 +793,7 @@ export default function AdminCondoDetail({ condo, onBack }: AdminCondoDetailProp
                       </Select>
                     </div>
                     <div className="space-y-2">
-                      <Label className="text-slate-900 font-black text-[10px] uppercase tracking-widest opacity-60">Tipologia Costo</Label>
+                      <Label className="text-slate-900 font-black text-xs uppercase tracking-widest opacity-60">Tipologia Costo</Label>
                       <Select value={newExpense.type} onValueChange={(v: any) => setNewExpense({...newExpense, type: v})}>
                         <SelectTrigger className="pro-input h-10 font-bold text-xs">
                           <SelectValue placeholder="Seleziona">
@@ -818,11 +818,11 @@ export default function AdminCondoDetail({ condo, onBack }: AdminCondoDetailProp
                   </div>
                 </CardContent>
                 <CardFooter className="p-6 pt-0 flex flex-col gap-2">
-                  <Button type="submit" className="w-full bg-indigo-600 text-white hover:bg-indigo-700 font-black h-11 rounded-xl shadow-lg transition-all hover:scale-[1.02] active:scale-[0.98] uppercase tracking-[0.1em] text-[10px]">
+                  <Button type="submit" className="w-full bg-indigo-600 text-white hover:bg-indigo-700 font-black h-11 rounded-xl shadow-lg transition-all hover:scale-[1.02] active:scale-[0.98] uppercase tracking-[0.1em] text-xs">
                     {editingExpense ? 'CONFERMA MODIFICA' : 'CONTABILIZZA SPESA'}
                   </Button>
                   {editingExpense && (
-                    <Button variant="ghost" className="w-full h-8 text-[9px] font-black tracking-widest uppercase text-slate-400" onClick={() => { setEditingExpense(null); setNewExpense({title:'',amount:'' as unknown as number,category:'ordinaria',type:'altro',paidBy:'misto', date: format(new Date(), 'yyyy-MM-dd')}); }}>
+                    <Button variant="ghost" className="w-full h-8 text-xs font-black tracking-widest uppercase text-slate-400" onClick={() => { setEditingExpense(null); setNewExpense({title:'',amount:'' as unknown as number,category:'ordinaria',type:'altro',paidBy:'misto', date: format(new Date(), 'yyyy-MM-dd')}); }}>
                       Annulla Modifica
                     </Button>
                   )}
@@ -833,14 +833,14 @@ export default function AdminCondoDetail({ condo, onBack }: AdminCondoDetailProp
             <Card className="order-1 lg:order-2 lg:col-span-2 rounded-2xl border border-slate-200 p-0 overflow-hidden shadow-xl shadow-slate-200/50">
                <div className="px-8 py-6 bg-slate-50 border-b border-slate-200">
                   <h3 className="text-2xl font-black text-slate-900 tracking-tighter uppercase">Libro Giornale Spese</h3>
-                  <p className="text-slate-400 text-[9px] font-black uppercase tracking-[0.2em] mt-1.5">Movimenti contabili certificati</p>
+                  <p className="text-slate-400 text-xs font-black uppercase tracking-[0.2em] mt-1.5">Movimenti contabili certificati</p>
               </div>
-              <CardContent className="p-0 overflow-x-auto">
-                <Table className="min-w-[700px] lg:min-w-0">
+              <CardContent className="p-0 md:overflow-x-auto">
+                <Table>
                   <TableHeader>
                     <TableRow className="border-slate-200 bg-slate-50 hover:bg-slate-50 h-14">
                       <TableHead 
-                        className="text-slate-400 uppercase text-[10px] font-black tracking-widest px-8 cursor-pointer hover:text-indigo-600 transition-colors"
+                        className="text-slate-400 uppercase text-xs font-black tracking-widest px-8 cursor-pointer hover:text-indigo-600 transition-colors"
                         onClick={() => toggleSort('date')}
                       >
                         <div className="flex items-center">
@@ -848,7 +848,7 @@ export default function AdminCondoDetail({ condo, onBack }: AdminCondoDetailProp
                         </div>
                       </TableHead>
                       <TableHead 
-                        className="text-slate-400 uppercase text-[10px] font-black tracking-widest cursor-pointer hover:text-indigo-600 transition-colors"
+                        className="text-slate-400 uppercase text-xs font-black tracking-widest cursor-pointer hover:text-indigo-600 transition-colors"
                         onClick={() => toggleSort('title')}
                       >
                         <div className="flex items-center">
@@ -856,7 +856,7 @@ export default function AdminCondoDetail({ condo, onBack }: AdminCondoDetailProp
                         </div>
                       </TableHead>
                       <TableHead 
-                        className="text-slate-400 uppercase text-[10px] font-black tracking-widest cursor-pointer hover:text-indigo-600 transition-colors"
+                        className="text-slate-400 uppercase text-xs font-black tracking-widest cursor-pointer hover:text-indigo-600 transition-colors"
                         onClick={() => toggleSort('category')}
                       >
                         <div className="flex items-center">
@@ -864,7 +864,7 @@ export default function AdminCondoDetail({ condo, onBack }: AdminCondoDetailProp
                         </div>
                       </TableHead>
                       <TableHead 
-                        className="text-right text-slate-400 uppercase text-[10px] font-black tracking-widest px-8 cursor-pointer hover:text-indigo-600 transition-colors"
+                        className="text-right text-slate-400 uppercase text-xs font-black tracking-widest px-8 cursor-pointer hover:text-indigo-600 transition-colors"
                         onClick={() => toggleSort('amount')}
                       >
                         <div className="flex items-center justify-end">
@@ -876,7 +876,7 @@ export default function AdminCondoDetail({ condo, onBack }: AdminCondoDetailProp
                   <TableBody>
                     {sortedExpenses.map(e => (
                       <TableRow key={e.id} className="border-slate-100 hover:bg-slate-50 transition-all h-20 group">
-                        <TableCell className="text-[11px] font-mono text-slate-400 px-8 uppercase font-black tracking-tighter leading-tight">
+                        <TableCell label="Protocollo" className="text-sm font-mono text-slate-400 px-8 uppercase font-black tracking-tighter leading-tight">
                           {e.date && !isNaN(new Date(e.date).getTime()) ? (
                             <>
                               {format(new Date(e.date), 'dd.MM', { locale: it })}<br/>
@@ -886,18 +886,18 @@ export default function AdminCondoDetail({ condo, onBack }: AdminCondoDetailProp
                             <span className="text-slate-300">--.--<br/>----</span>
                           )}
                         </TableCell>
-                        <TableCell>
+                        <TableCell label="Titolo / Causa">
                           <div className="font-black text-slate-900 text-lg tracking-tight uppercase leading-tight">{e.title}</div>
-                          <Badge variant="secondary" className="bg-slate-100 text-slate-500 font-bold uppercase text-[8px] mt-1.5 border-none px-2 py-0">REF: {e.type}</Badge>
+                          <Badge variant="secondary" className="bg-slate-100 text-slate-500 font-bold uppercase text-xs mt-1.5 border-none px-2 py-0">REF: {e.type}</Badge>
                         </TableCell>
-                        <TableCell>
-                          <Badge className={`uppercase text-[9px] font-black tracking-widest border-none px-3 py-1 rounded-full ${
+                        <TableCell label="Categoria">
+                          <Badge className={`uppercase text-xs font-black tracking-widest border-none px-3 py-1 rounded-full ${
                             e.category === 'ordinaria' ? 'bg-indigo-50 text-indigo-700' : 'bg-red-50 text-red-700'
                           }`}>
                             {e.category}
                           </Badge>
                         </TableCell>
-                        <TableCell className="text-right px-8">
+                        <TableCell label="Valore" className="text-right px-8">
                           <div className="flex justify-end gap-1.5 mb-1">
                              <Button variant="ghost" size="icon" className="h-8 w-8 rounded-lg text-slate-400 hover:text-indigo-600 hover:bg-indigo-50" onClick={() => { setEditingExpense(e); setNewExpense({title:e.title, amount:e.amount as any, category:e.category, type:e.type, paidBy:e.paidBy, date: e.date || format(new Date(), 'yyyy-MM-dd')}); }}>
                                <Edit2 className="w-4 h-4" />
@@ -909,7 +909,7 @@ export default function AdminCondoDetail({ condo, onBack }: AdminCondoDetailProp
                           <div className="font-mono font-black text-xl tracking-tighter leading-none text-red-600">
                             -€{Math.abs(e.amount).toLocaleString('it-IT', { minimumFractionDigits: 2 })}
                           </div>
-                          <div className="text-[9px] font-black uppercase tracking-widest mt-0.5 text-red-500">
+                          <div className="text-xs font-black uppercase tracking-widest mt-0.5 text-red-500">
                              Uscita Contabile
                           </div>
                         </TableCell>
@@ -917,7 +917,7 @@ export default function AdminCondoDetail({ condo, onBack }: AdminCondoDetailProp
                     ))}
                     {expenses.length === 0 && (
                       <TableRow>
-                        <TableCell colSpan={4} className="text-center py-48 text-slate-200 uppercase tracking-[0.5em] text-[13px] font-black italic">Registro Contabile Vuoto</TableCell>
+                        <TableCell colSpan={4} className="text-center py-48 text-slate-200 uppercase tracking-[0.5em] text-sm font-black italic">Registro Contabile Vuoto</TableCell>
                       </TableRow>
                     )}
                   </TableBody>
@@ -932,29 +932,29 @@ export default function AdminCondoDetail({ condo, onBack }: AdminCondoDetailProp
              <div className="px-8 py-8 bg-slate-900 flex flex-col md:flex-row md:items-center justify-between gap-6">
                 <div>
                   <h3 className="text-3xl font-black text-white tracking-tighter uppercase">Bilancio di Ripartizione</h3>
-                  <p className="text-slate-400 text-[9px] font-black uppercase tracking-[0.2em] mt-2">Ripartizione analitica per caratura millesimale</p>
+                  <p className="text-slate-400 text-xs font-black uppercase tracking-[0.2em] mt-2">Ripartizione analitica per caratura millesimale</p>
                 </div>
                 <div className="flex gap-4">
                   <Button 
                     onClick={() => setIsEmittingRates(true)}
-                    className="bg-emerald-600 text-white hover:bg-emerald-700 font-black uppercase text-[10px] tracking-widest h-12 px-6 rounded-xl shadow-lg shadow-emerald-900/20"
+                    className="bg-emerald-600 text-white hover:bg-emerald-700 font-black uppercase text-xs tracking-widest h-12 px-6 rounded-xl shadow-lg shadow-emerald-900/20"
                   >
                     <Plus className="w-4 h-4 mr-2" /> Emetti Rate
                   </Button>
                   <div className="px-6 py-3 bg-white/5 rounded-2xl border border-white/10 backdrop-blur-md">
-                    <p className="text-[9px] font-black uppercase text-indigo-400 tracking-widest mb-0.5">Saldo Netto Operativo</p>
+                    <p className="text-xs font-black uppercase text-indigo-400 tracking-widest mb-0.5">Saldo Netto Operativo</p>
                     <p className="text-2xl font-black text-white">€{(payments.filter(p => p.status === 'paid').reduce((sum, p) => sum + p.amount, 0) - expenses.reduce((sum, e) => sum + e.amount, 0)).toLocaleString('it-IT', { minimumFractionDigits: 2 })}</p>
                   </div>
                 </div>
              </div>
-             <CardContent className="p-0 overflow-x-auto">
-               <Table className="min-w-[900px] lg:min-w-0">
+             <CardContent className="p-0 md:overflow-x-auto">
+               <Table>
                  <TableHeader>
                    <TableRow className="border-slate-200 bg-slate-50 hover:bg-slate-50 h-16">
-                     <TableHead className="text-slate-900 uppercase text-[10px] font-black tracking-widest px-8">Unità / Caratura</TableHead>
-                     <TableHead className="text-slate-400 uppercase text-[10px] font-black tracking-widest">Soggetto</TableHead>
-                     <TableHead className="text-slate-400 uppercase text-[10px] font-black tracking-widest">Ripartizione Ordinaria</TableHead>
-                     <TableHead className="text-right text-slate-900 uppercase text-[10px] font-black tracking-widest px-8">Debito Totale</TableHead>
+                     <TableHead className="text-slate-900 uppercase text-xs font-black tracking-widest px-8">Unità / Caratura</TableHead>
+                     <TableHead className="text-slate-400 uppercase text-xs font-black tracking-widest">Soggetto</TableHead>
+                     <TableHead className="text-slate-400 uppercase text-xs font-black tracking-widest">Ripartizione Ordinaria</TableHead>
+                     <TableHead className="text-right text-slate-900 uppercase text-xs font-black tracking-widest px-8">Debito Totale</TableHead>
                    </TableRow>
                  </TableHeader>
                  <TableBody>
@@ -965,35 +965,35 @@ export default function AdminCondoDetail({ condo, onBack }: AdminCondoDetailProp
                      
                      return (
                        <TableRow key={u.id} className="border-slate-100 hover:bg-slate-50/80 transition-all h-24 group">
-                         <TableCell className="px-8">
+                         <TableCell label="Unità / Caratura" className="px-8">
                            <div className="flex flex-col">
                              <span className="font-mono font-black text-slate-900 text-2xl tracking-tighter group-hover:text-indigo-600 transition-colors">{u.number}</span>
-                             <span className="text-[9px] text-slate-400 font-black uppercase tracking-widest mt-0.5">Caratura: {u.millesimi.toFixed(2)}</span>
+                             <span className="text-xs text-slate-400 font-black uppercase tracking-widest mt-0.5">Caratura: {u.millesimi.toFixed(2)}</span>
                            </div>
                          </TableCell>
-                         <TableCell>
+                         <TableCell label="Soggetto">
                            <div className="flex flex-col">
                              <span className="text-slate-900 font-black text-lg tracking-tight uppercase leading-tight">{u.ownerName}</span>
-                             <span className="text-[9px] text-indigo-500 font-black uppercase tracking-widest mt-1.5">Proprietario Certificato</span>
+                             <span className="text-xs text-indigo-500 font-black uppercase tracking-widest mt-1.5">Proprietario Certificato</span>
                            </div>
                          </TableCell>
-                         <TableCell>
+                         <TableCell label="Ripartizione Ordinaria">
                            <div className="space-y-0.5">
                              <div className="flex items-center gap-2">
-                               <span className="text-[9px] font-black uppercase text-slate-400 w-14">ORDINARIA</span>
+                               <span className="text-xs font-black uppercase text-slate-400 w-14">ORDINARIA</span>
                                <span className="font-mono font-bold text-slate-600 tracking-tight text-xs">€{(ordinaria * u.millesimi / 1000).toLocaleString('it-IT', { minimumFractionDigits: 2 })}</span>
                              </div>
                              <div className="flex items-center gap-2 border-t border-slate-100 pt-0.5">
-                               <span className="text-[9px] font-black uppercase text-slate-400 w-14">STRAORD.</span>
+                               <span className="text-xs font-black uppercase text-slate-400 w-14">STRAORD.</span>
                                <span className="font-mono font-bold text-slate-600 tracking-tight text-xs">€{(straordinaria * u.millesimi / 1000).toLocaleString('it-IT', { minimumFractionDigits: 2 })}</span>
                              </div>
                            </div>
                          </TableCell>
-                         <TableCell className="text-right px-8">
+                         <TableCell label="Debito Totale" className="text-right px-8">
                            <div className="font-mono font-black text-slate-900 text-3xl tracking-tighter group-hover:scale-105 transition-transform origin-right">
                              €{totalShare.toLocaleString('it-IT', { minimumFractionDigits: 2 })}
                            </div>
-                           <div className="text-[9px] text-emerald-600 font-black uppercase tracking-widest mt-1.5 flex items-center justify-end gap-1.5">
+                           <div className="text-xs text-emerald-600 font-black uppercase tracking-widest mt-1.5 flex items-center justify-end gap-1.5">
                              <PieChart className="w-2.5 h-2.5" />
                              Quota Calcolata
                            </div>
@@ -1003,7 +1003,7 @@ export default function AdminCondoDetail({ condo, onBack }: AdminCondoDetailProp
                    })}
                    {units.length === 0 && (
                      <TableRow>
-                       <TableCell colSpan={4} className="text-center py-32 text-slate-200 uppercase tracking-[0.5em] text-[11px] font-black italic">Dati Insufficienti per il Report</TableCell>
+                       <TableCell colSpan={4} className="text-center py-32 text-slate-200 uppercase tracking-[0.5em] text-sm font-black italic">Dati Insufficienti per il Report</TableCell>
                      </TableRow>
                    )}
                  </TableBody>
@@ -1018,7 +1018,7 @@ export default function AdminCondoDetail({ condo, onBack }: AdminCondoDetailProp
                 </div>
                 <Button 
                   onClick={handleExportPDF}
-                  className="rounded-xl h-12 px-8 bg-slate-900 text-white font-black uppercase tracking-widest hover:bg-slate-800 transition-all shadow-lg text-[10px]"
+                  className="rounded-xl h-12 px-8 bg-slate-900 text-white font-black uppercase tracking-widest hover:bg-slate-800 transition-all shadow-lg text-xs"
                 >
                   ESPORTA BILANCIO PDF
                 </Button>
@@ -1036,14 +1036,14 @@ export default function AdminCondoDetail({ condo, onBack }: AdminCondoDetailProp
                    </div>
                    <div>
                     <h3 className="text-white font-black text-lg tracking-tight uppercase">Gestione Incassi</h3>
-                    <p className="text-[9px] text-white/50 uppercase font-black tracking-[0.2em] mt-0.5">Rate e Canoni di Locazione</p>
+                    <p className="text-xs text-white/50 uppercase font-black tracking-[0.2em] mt-0.5">Rate e Canoni di Locazione</p>
                    </div>
                 </div>
               </div>
               <form onSubmit={handleAddPayment}>
                 <CardContent className="space-y-6 p-6 pt-6">
                   <div className="space-y-2">
-                    <Label className="text-slate-900 font-black text-[10px] uppercase tracking-widest opacity-60">Unità Destinataria</Label>
+                    <Label className="text-slate-900 font-black text-xs uppercase tracking-widest opacity-60">Unità Destinataria</Label>
                     <Select value={newPayment.unitId} onValueChange={(v) => {
                       const unit = units.find(u => u.id === v);
                       setNewPayment({
@@ -1071,7 +1071,7 @@ export default function AdminCondoDetail({ condo, onBack }: AdminCondoDetailProp
 
                   {newPayment.unitId && (
                     <div className="space-y-2">
-                      <Label className="text-slate-900 font-black text-[10px] uppercase tracking-widest opacity-60">Soggetto Debitore (Persona Riconducibile)</Label>
+                      <Label className="text-slate-900 font-black text-xs uppercase tracking-widest opacity-60">Soggetto Debitore (Persona Riconducibile)</Label>
                       <Select 
                         value={newPayment.recipientType || 'owner'} 
                         onValueChange={(typeVal: 'owner' | 'tenant') => {
@@ -1113,27 +1113,27 @@ export default function AdminCondoDetail({ condo, onBack }: AdminCondoDetailProp
                     </div>
                   )}
                   <div className="space-y-2">
-                    <Label className="text-slate-900 font-black text-[10px] uppercase tracking-widest opacity-60">Titolo del Pagamento</Label>
+                    <Label className="text-slate-900 font-black text-xs uppercase tracking-widest opacity-60">Titolo del Pagamento</Label>
                     <Input className="pro-input h-11 font-black text-sm" value={newPayment.title} onChange={e => setNewPayment({...newPayment, title: e.target.value})} placeholder="es. Rata 1 - Gennaio" />
                   </div>
                   <div className="grid grid-cols-2 gap-3">
                     <div className="space-y-2">
-                      <Label className="text-slate-900 font-black text-[10px] uppercase tracking-widest opacity-60">Importo Totale (€)</Label>
+                      <Label className="text-slate-900 font-black text-xs uppercase tracking-widest opacity-60">Importo Totale (€)</Label>
                       <Input className="pro-input h-11 font-mono text-indigo-700 text-lg font-black tracking-tighter" type="number" step="0.01" value={newPayment.amount} onChange={e => setNewPayment({...newPayment, amount: e.target.value as any})} />
                     </div>
                     <div className="space-y-2">
-                      <Label className="text-slate-900 font-black text-[10px] uppercase tracking-widest opacity-60">Importo Pagato (€)</Label>
+                      <Label className="text-slate-900 font-black text-xs uppercase tracking-widest opacity-60">Importo Pagato (€)</Label>
                       <Input className="pro-input h-11 font-mono text-emerald-700 text-lg font-black tracking-tighter" type="number" step="0.01" value={newPayment.paidAmount} onChange={e => setNewPayment({...newPayment, paidAmount: e.target.value as any})} />
                     </div>
                   </div>
                   <div className="pt-3 space-y-4 border-t border-slate-100">
                     <div className="grid grid-cols-2 gap-3">
                       <div className="space-y-2">
-                        <Label className="text-slate-900 font-black text-[10px] uppercase tracking-widest opacity-60">Scadenza</Label>
+                        <Label className="text-slate-900 font-black text-xs uppercase tracking-widest opacity-60">Scadenza</Label>
                         <Input type="date" className="pro-input h-10 font-bold text-xs" value={newPayment.dueDate} onChange={e => setNewPayment({...newPayment, dueDate: e.target.value})} />
                       </div>
                       <div className="space-y-2">
-                        <Label className="text-slate-900 font-black text-[10px] uppercase tracking-widest opacity-60">Tipologia</Label>
+                        <Label className="text-slate-900 font-black text-xs uppercase tracking-widest opacity-60">Tipologia</Label>
                         <Select value={newPayment.type} onValueChange={(v: any) => setNewPayment({...newPayment, type: v})}>
                           <SelectTrigger className="pro-input h-10 font-bold text-xs">
                             <SelectValue>
@@ -1151,7 +1151,7 @@ export default function AdminCondoDetail({ condo, onBack }: AdminCondoDetailProp
                       </div>
                     </div>
                     <div className="space-y-2">
-                      <Label className="text-slate-900 font-black text-[10px] uppercase tracking-widest opacity-60">Stato Pagamento</Label>
+                      <Label className="text-slate-900 font-black text-xs uppercase tracking-widest opacity-60">Stato Pagamento</Label>
                       <Select value={newPayment.status} onValueChange={(v: any) => setNewPayment({...newPayment, status: v})}>
                         <SelectTrigger className="pro-input h-10 font-bold text-xs">
                           <SelectValue>
@@ -1172,11 +1172,11 @@ export default function AdminCondoDetail({ condo, onBack }: AdminCondoDetailProp
                   </div>
                 </CardContent>
                 <CardFooter className="p-6 pt-0 flex flex-col gap-2">
-                  <Button type="submit" className="w-full bg-emerald-600 text-white hover:bg-emerald-700 font-black h-11 rounded-xl shadow-lg transition-all hover:scale-[1.02] active:scale-[0.98] uppercase tracking-[0.1em] text-[10px]">
+                  <Button type="submit" className="w-full bg-emerald-600 text-white hover:bg-emerald-700 font-black h-11 rounded-xl shadow-lg transition-all hover:scale-[1.02] active:scale-[0.98] uppercase tracking-[0.1em] text-xs">
                     {editingPayment ? 'AGGIORNA PAGA' : 'EMETTI PAGAMENTO'}
                   </Button>
                   {editingPayment && (
-                    <Button variant="ghost" className="w-full h-8 text-[9px] font-black tracking-widest uppercase text-slate-400" onClick={() => { 
+                    <Button variant="ghost" className="w-full h-8 text-xs font-black tracking-widest uppercase text-slate-400" onClick={() => { 
                       setEditingPayment(null); 
                       setNewPayment({unitId:'',title:'',amount:0,dueDate:format(new Date(), 'yyyy-MM-dd'),type:'rate',status:'pending'}); 
                     }}>
@@ -1193,28 +1193,28 @@ export default function AdminCondoDetail({ condo, onBack }: AdminCondoDetailProp
                  <div className="px-8 py-6 bg-slate-50 border-b border-slate-200 flex items-center justify-between">
                   <div>
                     <h3 className="text-2xl font-black text-slate-900 tracking-tighter uppercase">Registro Incassi / Crediti</h3>
-                    <p className="text-slate-400 text-[9px] font-black uppercase tracking-[0.2em] mt-1.5">Monitoraggio flussi finanziari in entrata</p>
+                    <p className="text-slate-400 text-xs font-black uppercase tracking-[0.2em] mt-1.5">Monitoraggio flussi finanziari in entrata</p>
                   </div>
                    <div className="flex gap-3">
                       <div className="text-right px-4 py-1.5 bg-emerald-50 rounded-xl border border-emerald-100">
-                        <p className="text-[8px] font-black uppercase text-emerald-600 tracking-widest leading-none mb-1">Incassato</p>
+                        <p className="text-xs font-black uppercase text-emerald-600 tracking-widest leading-none mb-1">Incassato</p>
                         <p className="text-lg font-black text-emerald-700 leading-none">€{payments.filter(p => p.status === 'paid').reduce((s,p) => s+p.amount, 0).toLocaleString('it-IT', { minimumFractionDigits: 2 })}</p>
                       </div>
                       <div className="text-right px-4 py-1.5 bg-slate-50 rounded-xl border border-slate-100">
-                        <p className="text-[8px] font-black uppercase text-slate-400 tracking-widest leading-none mb-1">Pendente</p>
+                        <p className="text-xs font-black uppercase text-slate-400 tracking-widest leading-none mb-1">Pendente</p>
                         <p className="text-lg font-black text-slate-900 leading-none">€{payments.filter(p => p.status !== 'paid').reduce((s,p) => s+p.amount, 0).toLocaleString('it-IT', { minimumFractionDigits: 2 })}</p>
                       </div>
                    </div>
               </div>
-              <CardContent className="p-0 overflow-x-auto">
-                <Table className="min-w-[800px] lg:min-w-0">
+              <CardContent className="p-0 md:overflow-x-auto">
+                <Table>
                   <TableHeader>
                     <TableRow className="border-slate-200 bg-slate-50 hover:bg-slate-50 h-14">
-                      <TableHead className="text-slate-400 uppercase text-[10px] font-black tracking-widest px-8">Stato / Data</TableHead>
-                      <TableHead className="text-slate-400 uppercase text-[10px] font-black tracking-widest">Unità / Descrizione</TableHead>
-                      <TableHead className="text-slate-400 uppercase text-[10px] font-black tracking-widest">Soggetto Collegato (Debitore)</TableHead>
-                      <TableHead className="text-slate-400 uppercase text-[10px] font-black tracking-widest">Tipo</TableHead>
-                      <TableHead className="text-right text-slate-400 uppercase text-[10px] font-black tracking-widest px-8">Azioni / Totale</TableHead>
+                      <TableHead className="text-slate-400 uppercase text-xs font-black tracking-widest px-8">Stato / Data</TableHead>
+                      <TableHead className="text-slate-400 uppercase text-xs font-black tracking-widest">Unità / Descrizione</TableHead>
+                      <TableHead className="text-slate-400 uppercase text-xs font-black tracking-widest">Soggetto Collegato (Debitore)</TableHead>
+                      <TableHead className="text-slate-400 uppercase text-xs font-black tracking-widest">Tipo</TableHead>
+                      <TableHead className="text-right text-slate-400 uppercase text-xs font-black tracking-widest px-8">Azioni / Totale</TableHead>
                     </TableRow>
                   </TableHeader>
                   <TableBody>
@@ -1223,31 +1223,31 @@ export default function AdminCondoDetail({ condo, onBack }: AdminCondoDetailProp
                       const isPartial = p.status === 'partial' || (p.paidAmount && p.paidAmount > 0 && p.paidAmount < p.amount);
                       return (
                         <TableRow key={p.id} className="border-slate-100 hover:bg-slate-50 transition-all h-20 group">
-                          <TableCell className="px-8">
+                          <TableCell label="Stato / Data" className="px-8">
                             {p.status === 'paid' ? (
-                              <Badge className="bg-emerald-50 text-emerald-700 border-emerald-100 gap-1 px-2.5 py-0.5 font-black mb-1.5 uppercase text-[8px] tracking-widest whitespace-nowrap"><CheckCircle2 className="w-2.5 h-2.5" /> Saldato</Badge>
+                              <Badge className="bg-emerald-50 text-emerald-700 border-emerald-100 gap-1 px-2.5 py-0.5 font-black mb-1.5 uppercase text-xs tracking-widest whitespace-nowrap"><CheckCircle2 className="w-2.5 h-2.5" /> Saldato</Badge>
                             ) : isPartial ? (
-                              <Badge className="bg-sky-50 text-sky-700 border-sky-100 gap-1 px-2.5 py-0.5 font-black mb-1.5 uppercase text-[8px] tracking-widest whitespace-nowrap"><Clock className="w-2.5 h-2.5" /> Parziale</Badge>
+                              <Badge className="bg-sky-50 text-sky-700 border-sky-100 gap-1 px-2.5 py-0.5 font-black mb-1.5 uppercase text-xs tracking-widest whitespace-nowrap"><Clock className="w-2.5 h-2.5" /> Parziale</Badge>
                             ) : p.status === 'overdue' ? (
-                              <Badge className="bg-red-50 text-red-700 border-red-100 gap-1 px-2.5 py-0.5 font-black mb-1.5 uppercase text-[8px] tracking-widest whitespace-nowrap"><AlertCircle className="w-2.5 h-2.5" /> Scaduto</Badge>
+                              <Badge className="bg-red-50 text-red-700 border-red-100 gap-1 px-2.5 py-0.5 font-black mb-1.5 uppercase text-xs tracking-widest whitespace-nowrap"><AlertCircle className="w-2.5 h-2.5" /> Scaduto</Badge>
                             ) : (
-                              <Badge className="bg-amber-50 text-amber-700 border-amber-100 gap-1 px-2.5 py-0.5 font-black mb-1.5 uppercase text-[8px] tracking-widest whitespace-nowrap"><Clock className="w-2.5 h-2.5" /> Attesa</Badge>
+                              <Badge className="bg-amber-50 text-amber-700 border-amber-100 gap-1 px-2.5 py-0.5 font-black mb-1.5 uppercase text-xs tracking-widest whitespace-nowrap"><Clock className="w-2.5 h-2.5" /> Attesa</Badge>
                             )}
-                            <div className="text-[10px] font-mono font-black text-slate-400 tracking-tighter leading-none">SCAD: {p.dueDate}</div>
+                            <div className="text-xs font-mono font-black text-slate-400 tracking-tighter leading-none">SCAD: {p.dueDate}</div>
                           </TableCell>
-                          <TableCell>
+                          <TableCell label="Unità / Descrizione">
                             <div className="font-black text-slate-900 text-sm tracking-tight uppercase leading-tight">{p.title}</div>
-                            <div className="text-[10px] font-mono font-bold text-indigo-600 uppercase tracking-widest mt-1">
+                            <div className="text-xs font-mono font-bold text-indigo-600 uppercase tracking-widest mt-1">
                               U.I. INTERNO: {unit?.number || 'Ometti'}
                             </div>
                           </TableCell>
-                          <TableCell>
+                          <TableCell label="Soggetto Collegato (Debitore)">
                             <div className="flex flex-col gap-0.5">
                               <div className="font-bold text-slate-900 text-sm flex items-center gap-1.5">
                                 <User className="w-3.5 h-3.5 text-slate-400" />
                                 {p.recipientName || unit?.ownerName || 'Anagrafica Mancante'}
                               </div>
-                              <div className="text-[9px] uppercase font-black tracking-wider text-slate-400 flex items-center gap-1">
+                              <div className="text-xs uppercase font-black tracking-wider text-slate-400 flex items-center gap-1">
                                 {p.recipientType === 'tenant' ? (
                                   <span className="text-sky-600 bg-sky-50 px-1.5 py-0 rounded font-black">Inquilino / Conduttore</span>
                                 ) : (
@@ -1256,10 +1256,10 @@ export default function AdminCondoDetail({ condo, onBack }: AdminCondoDetailProp
                               </div>
                             </div>
                           </TableCell>
-                          <TableCell>
-                            <Badge variant="outline" className="uppercase text-[8px] font-black tracking-widest border-slate-200 text-slate-500">{p.type}</Badge>
+                          <TableCell label="Tipo">
+                            <Badge variant="outline" className="uppercase text-xs font-black tracking-widest border-slate-200 text-slate-500">{p.type}</Badge>
                           </TableCell>
-                          <TableCell className="text-right px-8">
+                          <TableCell label="Azioni / Totale" className="text-right px-8">
                              <div className="flex justify-end gap-1.5 mb-1 text-xs">
                                {p.status !== 'paid' && (
                                  <>
@@ -1288,13 +1288,13 @@ export default function AdminCondoDetail({ condo, onBack }: AdminCondoDetailProp
                              </div>
                             <div className="font-mono font-black text-slate-900 text-xl tracking-tighter leading-none">€{p.amount.toLocaleString('it-IT', { minimumFractionDigits: 2 })}</div>
                             {p.paidAmount && p.paidAmount > 0 && p.paidAmount < p.amount ? (
-                              <div className="text-[9px] text-emerald-600 font-extrabold mt-1">
+                              <div className="text-xs text-emerald-600 font-extrabold mt-1">
                                 Pagati: €{p.paidAmount.toLocaleString('it-IT', { minimumFractionDigits: 2 })} &bull; Rim: €{(p.amount - p.paidAmount).toLocaleString('it-IT', { minimumFractionDigits: 2 })}
                               </div>
                             ) : p.status === 'paid' ? (
-                              <div className="text-[9px] text-emerald-600 font-bold mt-1">Interamente Saldato</div>
+                              <div className="text-xs text-emerald-600 font-bold mt-1">Interamente Saldato</div>
                             ) : (
-                              <div className="text-[9px] text-slate-400 font-bold mt-1">Nessun acconto</div>
+                              <div className="text-xs text-slate-400 font-bold mt-1">Nessun acconto</div>
                             )}
                           </TableCell>
                         </TableRow>
@@ -1302,7 +1302,7 @@ export default function AdminCondoDetail({ condo, onBack }: AdminCondoDetailProp
                     })}
                     {payments.length === 0 && (
                       <TableRow>
-                        <TableCell colSpan={5} className="text-center py-48 text-slate-200 uppercase tracking-[0.5em] text-[13px] font-black italic">Nessuna rata o rateazione emessa</TableCell>
+                        <TableCell colSpan={5} className="text-center py-48 text-slate-200 uppercase tracking-[0.5em] text-sm font-black italic">Nessuna rata o rateazione emessa</TableCell>
                       </TableRow>
                     )}
                   </TableBody>
@@ -1331,18 +1331,18 @@ export default function AdminCondoDetail({ condo, onBack }: AdminCondoDetailProp
                 <p className="text-slate-500 font-medium text-sm">
                   Sei sicuro di voler eliminare <span className="font-black text-slate-900">&quot;{deleteConfirm.title}&quot;</span>?
                 </p>
-                <p className="text-red-500 font-bold text-[10px] uppercase tracking-widest mt-4 bg-red-50 py-2 rounded-lg italic">L&apos;operazione è irreversibile</p>
+                <p className="text-red-500 font-bold text-xs uppercase tracking-widest mt-4 bg-red-50 py-2 rounded-lg italic">L&apos;operazione è irreversibile</p>
               </div>
               <div className="flex gap-3 px-8 pb-8">
                 <Button 
                   variant="ghost" 
-                  className="flex-1 h-12 rounded-xl text-slate-400 font-black uppercase text-[10px] tracking-widest"
+                  className="flex-1 h-12 rounded-xl text-slate-400 font-black uppercase text-xs tracking-widest"
                   onClick={() => setDeleteConfirm(null)}
                 >
                   Indietro
                 </Button>
                 <Button 
-                  className="flex-1 bg-red-600 text-white hover:bg-red-700 h-12 rounded-xl font-black shadow-lg shadow-red-100 uppercase text-[10px] tracking-widest"
+                  className="flex-1 bg-red-600 text-white hover:bg-red-700 h-12 rounded-xl font-black shadow-lg shadow-red-100 uppercase text-xs tracking-widest"
                   onClick={() => {
                     if (deleteConfirm.type === 'unit') handleDeleteUnit(deleteConfirm.id);
                     if (deleteConfirm.type === 'expense') handleDeleteExpense(deleteConfirm.id);
@@ -1375,7 +1375,7 @@ export default function AdminCondoDetail({ condo, onBack }: AdminCondoDetailProp
               </div>
               <CardContent className="p-8 space-y-6">
                 <div className="space-y-2">
-                  <Label className="text-slate-900 font-black text-[10px] uppercase tracking-widest opacity-60">Descrizione dell'Emissione</Label>
+                  <Label className="text-slate-900 font-black text-xs uppercase tracking-widest opacity-60">Descrizione dell'Emissione</Label>
                   <Input 
                     className="pro-input h-12 font-bold" 
                     value={emitRatesTitle} 
@@ -1384,7 +1384,7 @@ export default function AdminCondoDetail({ condo, onBack }: AdminCondoDetailProp
                   />
                 </div>
                 <div className="space-y-2">
-                  <Label className="text-slate-900 font-black text-[10px] uppercase tracking-widest opacity-60">Importo Totale da Ripartire (€)</Label>
+                  <Label className="text-slate-900 font-black text-xs uppercase tracking-widest opacity-60">Importo Totale da Ripartire (€)</Label>
                   <Input 
                     type="number" 
                     step="0.01"
@@ -1394,10 +1394,10 @@ export default function AdminCondoDetail({ condo, onBack }: AdminCondoDetailProp
                     placeholder="0.00"
                   />
                   <div className="flex items-center gap-4 w-full mt-2.5">
-                    <p className="text-[10px] text-slate-400 font-bold uppercase tracking-wider italic shrink-0">Verrà diviso tra {units.length} unità</p>
+                    <p className="text-xs text-slate-400 font-bold uppercase tracking-wider italic shrink-0">Verrà diviso tra {units.length} unità</p>
                     <button 
                       type="button"
-                      className="flex-1 h-9 bg-indigo-50 hover:bg-indigo-100 text-indigo-700 font-black rounded-lg transition-all duration-75 active:scale-[0.95] flex items-center justify-center text-[9px] uppercase tracking-wider text-center"
+                      className="flex-1 h-9 bg-indigo-50 hover:bg-indigo-100 text-indigo-700 font-black rounded-lg transition-all duration-75 active:scale-[0.95] flex items-center justify-center text-xs uppercase tracking-wider text-center"
                       onClick={() => {
                         playBeep();
                         const exp = expenses.reduce((sum, e) => sum + e.amount, 0);
@@ -1413,13 +1413,13 @@ export default function AdminCondoDetail({ condo, onBack }: AdminCondoDetailProp
               <div className="flex gap-3 px-8 pb-8">
                 <Button 
                   variant="ghost" 
-                  className="flex-1 h-12 rounded-xl text-slate-400 font-black uppercase text-[10px] tracking-widest"
+                  className="flex-1 h-12 rounded-xl text-slate-400 font-black uppercase text-xs tracking-widest"
                   onClick={() => setIsEmittingRates(false)}
                 >
                   Indietro
                 </Button>
                 <Button 
-                  className="flex-1 bg-indigo-600 text-white hover:bg-indigo-700 h-12 rounded-xl font-black shadow-lg shadow-indigo-100 uppercase text-[10px] tracking-widest"
+                  className="flex-1 bg-indigo-600 text-white hover:bg-indigo-700 h-12 rounded-xl font-black shadow-lg shadow-indigo-100 uppercase text-xs tracking-widest"
                   onClick={handleEmitRates}
                   disabled={loading}
                 >
@@ -1449,7 +1449,7 @@ export default function AdminCondoDetail({ condo, onBack }: AdminCondoDetailProp
               </div>
               <CardContent className="p-8 space-y-4">
                 <div className="space-y-1.5">
-                  <Label className="text-slate-900 font-black text-[10px] uppercase tracking-widest opacity-60">Soggetto Destinatario</Label>
+                  <Label className="text-slate-900 font-black text-xs uppercase tracking-widest opacity-60">Soggetto Destinatario</Label>
                   <Input 
                     className="pro-input h-10 font-bold bg-slate-50 border-none text-slate-700" 
                     value={
@@ -1462,7 +1462,7 @@ export default function AdminCondoDetail({ condo, onBack }: AdminCondoDetailProp
                   />
                 </div>
                 <div className="space-y-1.5">
-                  <Label className="text-slate-900 font-black text-[10px] uppercase tracking-widest opacity-60">Recapito WhatsApp</Label>
+                  <Label className="text-slate-900 font-black text-xs uppercase tracking-widest opacity-60">Recapito WhatsApp</Label>
                   <Input 
                     className="pro-input h-10 font-bold bg-slate-50 border-none text-slate-700 font-mono text-xs" 
                     value={
@@ -1475,7 +1475,7 @@ export default function AdminCondoDetail({ condo, onBack }: AdminCondoDetailProp
                   />
                 </div>
                 <div className="space-y-1.5">
-                  <Label className="text-slate-900 font-black text-[10px] uppercase tracking-widest opacity-60">Testo del Messaggio</Label>
+                  <Label className="text-slate-900 font-black text-xs uppercase tracking-widest opacity-60">Testo del Messaggio</Label>
                   <textarea 
                     className="w-full min-h-[160px] p-4 font-medium text-xs text-slate-800 rounded-2xl border border-slate-200 outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-all leading-relaxed resize-none"
                     value={whatsAppMessage} 
@@ -1487,13 +1487,13 @@ export default function AdminCondoDetail({ condo, onBack }: AdminCondoDetailProp
               <div className="flex gap-3 px-8 pb-8">
                 <Button 
                   variant="ghost" 
-                  className="flex-1 h-12 rounded-xl text-slate-400 font-black uppercase text-[10px] tracking-widest"
+                  className="flex-1 h-12 rounded-xl text-slate-400 font-black uppercase text-xs tracking-widest"
                   onClick={() => setSelectedWhatsAppPayment(null)}
                 >
                   Annulla
                 </Button>
                 <Button 
-                  className="flex-1 bg-emerald-600 text-white hover:bg-emerald-700 h-12 rounded-xl font-black shadow-lg shadow-emerald-100 uppercase text-[10px] tracking-widest flex items-center justify-center gap-2"
+                  className="flex-1 bg-emerald-600 text-white hover:bg-emerald-700 h-12 rounded-xl font-black shadow-lg shadow-emerald-100 uppercase text-xs tracking-widest flex items-center justify-center gap-2"
                   onClick={sendWhatsApp}
                 >
                   Invia su WhatsApp

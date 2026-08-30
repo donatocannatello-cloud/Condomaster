@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { exportBackup, importBackup } from '../services/condoService';
 import { getLocalProfile, setLocalDisplayName } from '../services/authService';
+import { FONT_SCALE_DEFAULT, FONT_SCALE_MAX, FONT_SCALE_MIN, getFontScale, setFontScale } from '../services/settingsService';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -11,7 +12,8 @@ import {
   ShieldCheck,
   Smartphone,
   User,
-  HardDrive
+  HardDrive,
+  Type
 } from 'lucide-react';
 import { toast } from 'sonner';
 
@@ -19,7 +21,13 @@ export default function AdminSettings() {
   const [displayName, setDisplayName] = useState(getLocalProfile().displayName);
   const [isExporting, setIsExporting] = useState(false);
   const [isImporting, setIsImporting] = useState(false);
+  const [fontScale, setFontScaleState] = useState(getFontScale());
   const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const handleFontScaleChange = (value: number) => {
+    setFontScaleState(value);
+    setFontScale(value);
+  };
 
   const handleSaveName = () => {
     const trimmed = displayName.trim();
@@ -90,7 +98,7 @@ export default function AdminSettings() {
             </div>
             <div>
               <CardTitle className="text-xl font-black text-slate-900 tracking-tight">Profilo Amministratore</CardTitle>
-              <CardDescription className="font-bold text-[10px] uppercase tracking-widest text-slate-400">Nome visualizzato nell'app</CardDescription>
+              <CardDescription className="font-bold text-xs uppercase tracking-widest text-slate-400">Nome visualizzato nell'app</CardDescription>
             </div>
           </div>
         </CardHeader>
@@ -115,12 +123,57 @@ export default function AdminSettings() {
       <Card className="rounded-[2.5rem] border-slate-200 shadow-xl shadow-indigo-100/20 overflow-hidden bg-white">
         <CardHeader className="p-8 pb-4">
           <div className="flex items-center gap-4">
+            <div className="p-3 bg-amber-50 rounded-2xl text-amber-600">
+              <Type className="w-6 h-6" />
+            </div>
+            <div>
+              <CardTitle className="text-xl font-black text-slate-900 tracking-tight">Dimensione testo</CardTitle>
+              <CardDescription className="font-bold text-xs uppercase tracking-widest text-slate-400">Regola la leggibilità di tutta l'app</CardDescription>
+            </div>
+          </div>
+        </CardHeader>
+        <CardContent className="p-8 pt-4 space-y-5">
+          <p style={{ fontSize: `${fontScale}rem` }} className="font-bold text-slate-700 leading-relaxed">
+            Anteprima: Condominio Belvedere, Via Roma 45
+          </p>
+          <div className="flex items-center gap-4">
+            <span className="text-lg font-black text-slate-300 shrink-0">A</span>
+            <input
+              type="range"
+              min={FONT_SCALE_MIN}
+              max={FONT_SCALE_MAX}
+              step={0.05}
+              value={fontScale}
+              onChange={e => handleFontScaleChange(Number(e.target.value))}
+              className="w-full h-2 rounded-full appearance-none bg-slate-200 accent-indigo-600 cursor-pointer"
+              aria-label="Dimensione testo"
+            />
+            <span className="text-3xl font-black text-slate-400 shrink-0">A</span>
+          </div>
+          <div className="flex items-center justify-between">
+            <span className="text-xs font-black uppercase tracking-widest text-indigo-600 bg-indigo-50 px-3 py-1.5 rounded-full">
+              {Math.round((fontScale / FONT_SCALE_DEFAULT) * 100)}%
+            </span>
+            <Button
+              variant="ghost"
+              onClick={() => handleFontScaleChange(FONT_SCALE_DEFAULT)}
+              className="h-8 px-3 text-slate-400 hover:text-indigo-600 font-black uppercase text-xs tracking-widest"
+            >
+              Ripristina
+            </Button>
+          </div>
+        </CardContent>
+      </Card>
+
+      <Card className="rounded-[2.5rem] border-slate-200 shadow-xl shadow-indigo-100/20 overflow-hidden bg-white">
+        <CardHeader className="p-8 pb-4">
+          <div className="flex items-center gap-4">
             <div className="p-3 bg-emerald-50 rounded-2xl text-emerald-600">
               <HardDrive className="w-6 h-6" />
             </div>
             <div>
               <CardTitle className="text-xl font-black text-slate-900 tracking-tight">Dati sul dispositivo</CardTitle>
-              <CardDescription className="font-bold text-[10px] uppercase tracking-widest text-slate-400">Tutto resta offline, nessun server</CardDescription>
+              <CardDescription className="font-bold text-xs uppercase tracking-widest text-slate-400">Tutto resta offline, nessun server</CardDescription>
             </div>
           </div>
         </CardHeader>
@@ -168,7 +221,7 @@ export default function AdminSettings() {
             </div>
             <div>
               <CardTitle className="text-xl font-black text-slate-900 tracking-tight">App Locale</CardTitle>
-              <CardDescription className="font-bold text-[10px] uppercase tracking-widest text-slate-400">CondoMaster Pro</CardDescription>
+              <CardDescription className="font-bold text-xs uppercase tracking-widest text-slate-400">CondoMaster Pro</CardDescription>
             </div>
           </div>
         </CardHeader>

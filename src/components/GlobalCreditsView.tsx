@@ -488,7 +488,7 @@ export default function GlobalCreditsView() {
               </div>
               <Button 
                 onClick={handleGenerateRecurrences}
-                className="bg-white text-indigo-600 hover:bg-slate-50 font-black uppercase text-[10px] tracking-widest h-12 px-8 rounded-xl shadow-lg"
+                className="bg-white text-indigo-600 hover:bg-slate-50 font-black uppercase text-xs tracking-widest h-12 px-8 rounded-xl shadow-lg"
               >
                 <RefreshCw className="w-4 h-4 mr-2" /> Genera Automaticamente
               </Button>
@@ -522,17 +522,17 @@ export default function GlobalCreditsView() {
           {loading ? (
             <div className="p-20 flex flex-col items-center justify-center space-y-4">
               <div className="w-12 h-12 border-4 border-indigo-600 border-t-transparent rounded-full animate-spin" />
-              <p className="text-slate-400 font-bold uppercase text-[10px] tracking-widest">Sincronizzazione dati in corso...</p>
+              <p className="text-slate-400 font-bold uppercase text-xs tracking-widest">Sincronizzazione dati in corso...</p>
             </div>
           ) : (
-            <div className="overflow-x-auto">
-              <Table className="min-w-[1100px] xl:min-w-0">
+            <div className="md:overflow-x-auto">
+              <Table>
                 <TableHeader>
                   <TableRow className="border-slate-200 bg-slate-50/50 hover:bg-slate-50/50 h-14 select-none">
                     <TableHead className="text-slate-400 px-8">
                       <button 
                         onClick={() => { playBeep(); handleSort('status'); }}
-                        className="flex items-center gap-1 hover:text-indigo-600 active:scale-[0.95] transition-all uppercase text-[10px] font-black tracking-widest outline-none text-left font-sans"
+                        className="flex items-center gap-1 hover:text-indigo-600 active:scale-[0.95] transition-all uppercase text-xs font-black tracking-widest outline-none text-left font-sans"
                       >
                         Stato
                         {getSortIcon('status')}
@@ -541,7 +541,7 @@ export default function GlobalCreditsView() {
                     <TableHead className="text-slate-400">
                       <button 
                         onClick={() => { playBeep(); handleSort('dueDate'); }}
-                        className="flex items-center gap-1 hover:text-indigo-600 active:scale-[0.95] transition-all uppercase text-[10px] font-black tracking-widest outline-none text-left font-sans"
+                        className="flex items-center gap-1 hover:text-indigo-600 active:scale-[0.95] transition-all uppercase text-xs font-black tracking-widest outline-none text-left font-sans"
                       >
                         Scadenza
                         {getSortIcon('dueDate')}
@@ -550,7 +550,7 @@ export default function GlobalCreditsView() {
                     <TableHead className="text-slate-400">
                       <button 
                         onClick={() => { playBeep(); handleSort('condoName'); }}
-                        className="flex items-center gap-1 hover:text-indigo-600 active:scale-[0.95] transition-all uppercase text-[10px] font-black tracking-widest outline-none text-left font-sans"
+                        className="flex items-center gap-1 hover:text-indigo-600 active:scale-[0.95] transition-all uppercase text-xs font-black tracking-widest outline-none text-left font-sans"
                       >
                         Condominio
                         {getSortIcon('condoName')}
@@ -559,7 +559,7 @@ export default function GlobalCreditsView() {
                     <TableHead className="text-slate-400">
                       <button 
                         onClick={() => { playBeep(); handleSort('title'); }}
-                        className="flex items-center gap-1 hover:text-indigo-600 active:scale-[0.95] transition-all uppercase text-[10px] font-black tracking-widest outline-none text-left font-sans"
+                        className="flex items-center gap-1 hover:text-indigo-600 active:scale-[0.95] transition-all uppercase text-xs font-black tracking-widest outline-none text-left font-sans"
                       >
                         Descrizione / Titolo
                         {getSortIcon('title')}
@@ -568,7 +568,7 @@ export default function GlobalCreditsView() {
                     <TableHead className="text-slate-400">
                       <button 
                         onClick={() => { playBeep(); handleSort('type'); }}
-                        className="flex items-center gap-1 hover:text-indigo-600 active:scale-[0.95] transition-all uppercase text-[10px] font-black tracking-widest outline-none text-left font-sans"
+                        className="flex items-center gap-1 hover:text-indigo-600 active:scale-[0.95] transition-all uppercase text-xs font-black tracking-widest outline-none text-left font-sans"
                       >
                         Tipo
                         {getSortIcon('type')}
@@ -578,7 +578,7 @@ export default function GlobalCreditsView() {
                       <div className="flex justify-end">
                         <button 
                           onClick={() => { playBeep(); handleSort('amount'); }}
-                          className="flex items-center gap-1 hover:text-indigo-600 active:scale-[0.95] transition-all uppercase text-[10px] font-black tracking-widest outline-none text-right font-sans"
+                          className="flex items-center gap-1 hover:text-indigo-600 active:scale-[0.95] transition-all uppercase text-xs font-black tracking-widest outline-none text-right font-sans"
                         >
                           Azioni / Importo
                           {getSortIcon('amount')}
@@ -592,60 +592,60 @@ export default function GlobalCreditsView() {
                     const isPartial = p.status === 'partial' || (p.paidAmount && p.paidAmount > 0 && p.paidAmount < p.amount);
                     return (
                       <TableRow key={p.id} className="border-slate-100 hover:bg-slate-50 transition-all h-20 group">
-                        <TableCell className="px-8 whitespace-nowrap">
+                        <TableCell label="Stato" className="px-8 whitespace-nowrap">
                           {p.status === 'paid' ? (
-                            <Badge className="bg-emerald-50 text-emerald-700 border-emerald-100 gap-1 px-2.5 py-0.5 font-black uppercase text-[8px] tracking-widest"><CheckCircle2 className="w-2.5 h-2.5" /> Saldato</Badge>
+                            <Badge className="bg-emerald-50 text-emerald-700 border-emerald-100 gap-1 px-2.5 py-0.5 font-black uppercase text-xs tracking-widest"><CheckCircle2 className="w-2.5 h-2.5" /> Saldato</Badge>
                           ) : isPartial ? (
-                            <Badge className="bg-sky-50 text-sky-700 border-sky-100 gap-1 px-2.5 py-0.5 font-black uppercase text-[8px] tracking-widest"><CheckCircle2 className="w-2.5 h-2.5" /> Parziale</Badge>
+                            <Badge className="bg-sky-50 text-sky-700 border-sky-100 gap-1 px-2.5 py-0.5 font-black uppercase text-xs tracking-widest"><CheckCircle2 className="w-2.5 h-2.5" /> Parziale</Badge>
                           ) : p.status === 'overdue' ? (
-                            <Badge className="bg-red-50 text-red-750 border-red-100 gap-1 px-2.5 py-0.5 font-black uppercase text-[8px] tracking-widest"><AlertCircle className="w-2.5 h-2.5" /> Scaduto</Badge>
+                            <Badge className="bg-red-50 text-red-750 border-red-100 gap-1 px-2.5 py-0.5 font-black uppercase text-xs tracking-widest"><AlertCircle className="w-2.5 h-2.5" /> Scaduto</Badge>
                           ) : (
-                            <Badge className="bg-amber-50 text-amber-700 border-amber-100 gap-1 px-2.5 py-0.5 font-black uppercase text-[8px] tracking-widest"><Clock className="w-2.5 h-2.5" /> Attesa</Badge>
+                            <Badge className="bg-amber-50 text-amber-700 border-amber-100 gap-1 px-2.5 py-0.5 font-black uppercase text-xs tracking-widest"><Clock className="w-2.5 h-2.5" /> Attesa</Badge>
                           )}
                         </TableCell>
-                        <TableCell className="whitespace-nowrap">
-                          <div className="text-[10px] font-mono font-black text-slate-500 tracking-tighter leading-none uppercase">
+                        <TableCell label="Scadenza" className="whitespace-nowrap">
+                          <div className="text-xs font-mono font-black text-slate-500 tracking-tighter leading-none uppercase">
                             {p.dueDate ? format(new Date(p.dueDate), 'dd MMM yyyy', { locale: it }).toUpperCase() : '-- --- ----'}
                           </div>
                         </TableCell>
-                        <TableCell>
+                        <TableCell label="Condominio">
                            <div className="flex items-center gap-2">
                               <div className="p-1.5 bg-slate-100 rounded-lg text-slate-500 group-hover:bg-indigo-100 group-hover:text-indigo-600 transition-colors">
                                  <Building className="w-3.5 h-3.5" />
                               </div>
-                              <div className="font-bold text-slate-900 text-[11px] tracking-tight">{p.condoName}</div>
+                              <div className="font-bold text-slate-900 text-sm tracking-tight">{p.condoName}</div>
                            </div>
                         </TableCell>
-                        <TableCell>
+                        <TableCell label="Descrizione / Titolo">
                           <div className="flex items-center gap-2">
-                            <div className="font-black text-slate-900 text-[15px] tracking-tight uppercase leading-tight">{p.title}</div>
+                            <div className="font-black text-slate-900 text-base tracking-tight uppercase leading-tight">{p.title}</div>
                             {p.isRecurring && (
                               <Repeat className="w-3 h-3 text-indigo-500" title="Ricorrente mensile" />
                             )}
                           </div>
                           {p.recipientName ? (
-                            <div className="text-[10px] text-slate-400 font-bold mt-1 flex items-center gap-1.5 flex-wrap">
+                            <div className="text-xs text-slate-400 font-bold mt-1 flex items-center gap-1.5 flex-wrap">
                               <span>Soggetto:</span>
                               <span className="text-slate-755 font-black text-slate-900">{p.recipientName}</span>
                               {p.recipientType === 'tenant' ? (
-                                <span className="text-sky-600 bg-sky-50 px-1 py-0 rounded text-[8px] font-black uppercase whitespace-nowrap">Inquilino / Conduttore</span>
+                                <span className="text-sky-600 bg-sky-50 px-1 py-0 rounded text-xs font-black uppercase whitespace-nowrap">Inquilino / Conduttore</span>
                               ) : (
-                                <span className="text-indigo-600 bg-indigo-50 px-1 py-0 rounded text-[8px] font-black uppercase whitespace-nowrap">Proprietario Millesimale</span>
+                                <span className="text-indigo-600 bg-indigo-50 px-1 py-0 rounded text-xs font-black uppercase whitespace-nowrap">Proprietario Millesimale</span>
                               )}
                             </div>
                           ) : (
-                            <div className="text-[10px] text-slate-400 font-bold mt-1 flex items-center gap-1.5">
+                            <div className="text-xs text-slate-400 font-bold mt-1 flex items-center gap-1.5">
                               <span>Soggetto:</span>
                               <span className="text-slate-600 font-black">---</span>
                             </div>
                           )}
                         </TableCell>
-                        <TableCell>
-                          <Badge variant="outline" className="uppercase text-[8px] font-black tracking-widest border-slate-200 text-slate-500 bg-white px-2 py-0">
+                        <TableCell label="Tipo">
+                          <Badge variant="outline" className="uppercase text-xs font-black tracking-widest border-slate-200 text-slate-500 bg-white px-2 py-0">
                             {p.type === 'rate' ? 'Rata Cond.' : p.type === 'rent' ? 'Affitto' : 'Extra'}
                           </Badge>
                         </TableCell>
-                        <TableCell className="text-right px-8">
+                        <TableCell label="Azioni / Importo" className="text-right px-8">
                           <div className="flex justify-end gap-1.5 mb-1">
                             {p.status !== 'paid' && (
                               <Button 
@@ -679,13 +679,13 @@ export default function GlobalCreditsView() {
                           </div>
                           <div className="font-mono font-black text-slate-900 text-xl tracking-tighter leading-none">€{p.amount.toLocaleString('it-IT', { minimumFractionDigits: 2 })}</div>
                           {p.paidAmount && p.paidAmount > 0 && p.paidAmount < p.amount ? (
-                            <div className="text-[9px] text-emerald-600 font-extrabold mt-1">
+                            <div className="text-xs text-emerald-600 font-extrabold mt-1">
                               Pagati: €{p.paidAmount.toLocaleString('it-IT', { minimumFractionDigits: 2 })} &bull; Rim: €{(p.amount - p.paidAmount).toLocaleString('it-IT', { minimumFractionDigits: 2 })}
                             </div>
                           ) : p.status === 'paid' ? (
-                            <div className="text-[9px] text-emerald-600 font-bold mt-1">Interamente Saldato</div>
+                            <div className="text-xs text-emerald-600 font-bold mt-1">Interamente Saldato</div>
                           ) : (
-                            <div className="text-[9px] text-slate-400 font-bold mt-1">Nessun acconto</div>
+                            <div className="text-xs text-slate-400 font-bold mt-1">Nessun acconto</div>
                           )}
                         </TableCell>
                       </TableRow>
@@ -695,7 +695,7 @@ export default function GlobalCreditsView() {
               </Table>
               {!loading && filteredPayments.length === 0 && (
                 <div className="py-32 text-center">
-                  <p className="text-slate-300 font-black uppercase text-[13px] tracking-[0.5em] italic">Nessun credito trovato per questa categoria</p>
+                  <p className="text-slate-300 font-black uppercase text-sm tracking-[0.5em] italic">Nessun credito trovato per questa categoria</p>
                 </div>
               )}
             </div>
@@ -706,14 +706,14 @@ export default function GlobalCreditsView() {
       <div className="flex flex-col sm:flex-row items-center justify-center gap-4 py-4">
         <Button 
           onClick={() => setIsCreating(true)} 
-          className="w-full sm:w-auto rounded-2xl h-14 px-10 bg-indigo-600 text-white hover:bg-indigo-700 transition-all font-black uppercase text-[10px] tracking-widest shadow-xl shadow-indigo-100"
+          className="w-full sm:w-auto rounded-2xl h-14 px-10 bg-indigo-600 text-white hover:bg-indigo-700 transition-all font-black uppercase text-xs tracking-widest shadow-xl shadow-indigo-100"
         >
           <Plus className="w-4 h-4 mr-2 stroke-[3]" /> NUOVO CREDITO
         </Button>
         <Button 
           onClick={handleExportReport}
           variant="outline" 
-          className="w-full sm:w-auto rounded-2xl h-14 px-10 border-slate-200 text-slate-600 hover:bg-slate-50 transition-all font-black uppercase text-[10px] tracking-widest border-2"
+          className="w-full sm:w-auto rounded-2xl h-14 px-10 border-slate-200 text-slate-600 hover:bg-slate-50 transition-all font-black uppercase text-xs tracking-widest border-2"
         >
           <Download className="w-4 h-4 mr-2" /> ESPORTA REPORT
         </Button>
@@ -740,12 +740,12 @@ export default function GlobalCreditsView() {
               <Card className="shadow-2xl border-none rounded-[2rem] overflow-hidden bg-white">
                 <div className="bg-indigo-600 px-8 py-8">
                   <h3 className="text-2xl font-black text-white tracking-tighter uppercase">Emissione Nuovo Credito</h3>
-                  <p className="text-white/60 font-bold uppercase text-[10px] tracking-[0.2em] mt-2">Creazione globale debitore</p>
+                  <p className="text-white/60 font-bold uppercase text-xs tracking-[0.2em] mt-2">Creazione globale debitore</p>
                 </div>
                 <form onSubmit={handleCreate}>
                   <CardContent className="space-y-5 p-8 max-h-[60vh] overflow-y-auto no-scrollbar">
                     <div className="space-y-2">
-                      <Label className="text-slate-900 font-black text-[10px] uppercase tracking-widest opacity-60">Selezione Condominio</Label>
+                      <Label className="text-slate-900 font-black text-xs uppercase tracking-widest opacity-60">Selezione Condominio</Label>
                       <Select value={selectedCondoId} onValueChange={setSelectedCondoId}>
                         <SelectTrigger className="pro-input h-11 text-xs">
                           <SelectValue placeholder="Seleziona Fabbricato">
@@ -761,7 +761,7 @@ export default function GlobalCreditsView() {
                     </div>
 
                     <div className="space-y-2">
-                      <Label className="text-slate-900 font-black text-[10px] uppercase tracking-widest opacity-60">Unità Destinataria</Label>
+                      <Label className="text-slate-900 font-black text-xs uppercase tracking-widest opacity-60">Unità Destinataria</Label>
                       <Select 
                         value={creationForm.unitId} 
                         onValueChange={v => {
@@ -793,7 +793,7 @@ export default function GlobalCreditsView() {
 
                     {creationForm.unitId && (
                       <div className="space-y-2">
-                        <Label className="text-slate-900 font-black text-[10px] uppercase tracking-widest opacity-60">Soggetto Debitore (Persona Riconducibile)</Label>
+                        <Label className="text-slate-900 font-black text-xs uppercase tracking-widest opacity-60">Soggetto Debitore (Persona Riconducibile)</Label>
                         <Select 
                           value={creationForm.recipientType || 'owner'} 
                           onValueChange={(typeVal: 'owner' | 'tenant') => {
@@ -836,7 +836,7 @@ export default function GlobalCreditsView() {
                     )}
 
                     <div className="space-y-2">
-                      <Label className="text-slate-900 font-black text-[10px] uppercase tracking-widest opacity-60">Descrizione Rate / Titolo</Label>
+                      <Label className="text-slate-900 font-black text-xs uppercase tracking-widest opacity-60">Descrizione Rate / Titolo</Label>
                       <Input 
                         value={creationForm.title}
                         onChange={e => setCreationForm({ ...creationForm, title: e.target.value })}
@@ -847,7 +847,7 @@ export default function GlobalCreditsView() {
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div className="space-y-2">
-                        <Label className="text-slate-900 font-black text-[10px] uppercase tracking-widest opacity-60">Importo Totale (€)</Label>
+                        <Label className="text-slate-900 font-black text-xs uppercase tracking-widest opacity-60">Importo Totale (€)</Label>
                         <Input 
                           type="number"
                           step="0.01"
@@ -857,7 +857,7 @@ export default function GlobalCreditsView() {
                         />
                       </div>
                       <div className="space-y-2">
-                        <Label className="text-slate-900 font-black text-[10px] uppercase tracking-widest opacity-60">Importo Pagato (€)</Label>
+                        <Label className="text-slate-900 font-black text-xs uppercase tracking-widest opacity-60">Importo Pagato (€)</Label>
                         <Input 
                           type="number"
                           step="0.01"
@@ -868,7 +868,7 @@ export default function GlobalCreditsView() {
                       </div>
                     </div>
                     <div className="space-y-2">
-                      <Label className="text-slate-900 font-black text-[10px] uppercase tracking-widest opacity-60">Scadenza</Label>
+                      <Label className="text-slate-900 font-black text-xs uppercase tracking-widest opacity-60">Scadenza</Label>
                       <Input 
                         type="date"
                         value={creationForm.dueDate}
@@ -887,18 +887,18 @@ export default function GlobalCreditsView() {
                       <div className="grid gap-1.5 leading-none">
                         <label
                           htmlFor="isRecurring"
-                          className="text-[10px] uppercase font-black text-slate-700 tracking-widest cursor-pointer"
+                          className="text-xs uppercase font-black text-slate-700 tracking-widest cursor-pointer"
                         >
                           Rendi Ricorrente (Mensile)
                         </label>
-                        <p className="text-[9px] font-medium text-slate-500">
+                        <p className="text-xs font-medium text-slate-500">
                           Se attivo, il sistema proporrà l&apos;emissione automatica ogni mese.
                         </p>
                       </div>
                     </div>
 
                     <div className="space-y-2">
-                      <Label className="text-slate-900 font-black text-[10px] uppercase tracking-widest opacity-60">Tipologia</Label>
+                      <Label className="text-slate-900 font-black text-xs uppercase tracking-widest opacity-60">Tipologia</Label>
                       <Select 
                         value={creationForm.type} 
                         onValueChange={(v: any) => {
@@ -925,10 +925,10 @@ export default function GlobalCreditsView() {
                     </div>
                   </CardContent>
                   <CardFooter className="flex gap-3 p-8 pt-0 mt-2">
-                    <Button variant="ghost" type="button" onClick={() => { setIsCreating(false); resetCreationForm(); }} className="flex-1 h-11 rounded-xl text-slate-400 font-black uppercase text-[10px] tracking-widest">
+                    <Button variant="ghost" type="button" onClick={() => { setIsCreating(false); resetCreationForm(); }} className="flex-1 h-11 rounded-xl text-slate-400 font-black uppercase text-xs tracking-widest">
                       Annulla
                     </Button>
-                    <Button type="submit" className="flex-1 bg-indigo-600 text-white font-black h-11 rounded-xl shadow-lg uppercase text-[10px] tracking-widest">
+                    <Button type="submit" className="flex-1 bg-indigo-600 text-white font-black h-11 rounded-xl shadow-lg uppercase text-xs tracking-widest">
                       Emetti Credito
                     </Button>
                   </CardFooter>
@@ -949,12 +949,12 @@ export default function GlobalCreditsView() {
               <Card className="shadow-2xl border-none rounded-[2rem] overflow-hidden bg-white">
                 <div className="bg-slate-900 px-8 py-8">
                   <h3 className="text-2xl font-black text-white tracking-tighter uppercase">Modifica Credito</h3>
-                  <p className="text-slate-400 font-bold uppercase text-[10px] tracking-[0.2em] mt-2">Aggiornamento contabile globale</p>
+                  <p className="text-slate-400 font-bold uppercase text-xs tracking-[0.2em] mt-2">Aggiornamento contabile globale</p>
                 </div>
                 <form onSubmit={handleUpdate}>
                   <CardContent className="space-y-6 rotate-0 p-8">
                     <div className="space-y-2">
-                      <Label className="text-slate-900 font-black text-[10px] uppercase tracking-widest opacity-60">Titolo Credito</Label>
+                      <Label className="text-slate-900 font-black text-xs uppercase tracking-widest opacity-60">Titolo Credito</Label>
                       <Input 
                         value={editForm.title}
                         onChange={e => setEditForm({ ...editForm, title: e.target.value })}
@@ -963,7 +963,7 @@ export default function GlobalCreditsView() {
                     </div>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div className="space-y-2">
-                        <Label className="text-slate-900 font-black text-[10px] uppercase tracking-widest opacity-60">Importo Totale (€)</Label>
+                        <Label className="text-slate-900 font-black text-xs uppercase tracking-widest opacity-60">Importo Totale (€)</Label>
                         <Input 
                           type="number"
                           step="0.01"
@@ -973,7 +973,7 @@ export default function GlobalCreditsView() {
                         />
                       </div>
                       <div className="space-y-2">
-                        <Label className="text-slate-900 font-black text-[10px] uppercase tracking-widest opacity-60">Importo Pagato (€)</Label>
+                        <Label className="text-slate-900 font-black text-xs uppercase tracking-widest opacity-60">Importo Pagato (€)</Label>
                         <Input 
                           type="number"
                           step="0.01"
@@ -985,7 +985,7 @@ export default function GlobalCreditsView() {
                     </div>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div className="space-y-2">
-                        <Label className="text-slate-900 font-black text-[10px] uppercase tracking-widest opacity-60">Scadenza</Label>
+                        <Label className="text-slate-900 font-black text-xs uppercase tracking-widest opacity-60">Scadenza</Label>
                         <Input 
                           type="date"
                           value={editForm.dueDate}
@@ -994,7 +994,7 @@ export default function GlobalCreditsView() {
                         />
                       </div>
                       <div className="space-y-2">
-                        <Label className="text-slate-900 font-black text-[10px] uppercase tracking-widest opacity-60">Stato Pagamento</Label>
+                        <Label className="text-slate-900 font-black text-xs uppercase tracking-widest opacity-60">Stato Pagamento</Label>
                         <Select 
                           value={editForm.status} 
                           onValueChange={(v: any) => setEditForm({ ...editForm, status: v })}
@@ -1018,10 +1018,10 @@ export default function GlobalCreditsView() {
                     </div>
                   </CardContent>
                   <CardFooter className="flex gap-3 p-8 pt-0">
-                    <Button variant="ghost" type="button" onClick={() => setEditingPayment(null)} className="flex-1 h-12 rounded-xl text-slate-400 font-black uppercase text-[10px] tracking-widest">
+                    <Button variant="ghost" type="button" onClick={() => setEditingPayment(null)} className="flex-1 h-12 rounded-xl text-slate-400 font-black uppercase text-xs tracking-widest">
                       Annulla
                     </Button>
-                    <Button type="submit" className="flex-1 bg-indigo-600 text-white font-black h-12 rounded-xl shadow-lg uppercase text-[10px] tracking-widest">
+                    <Button type="submit" className="flex-1 bg-indigo-600 text-white font-black h-12 rounded-xl shadow-lg uppercase text-xs tracking-widest">
                       Salva Modifiche
                     </Button>
                   </CardFooter>
@@ -1050,18 +1050,18 @@ export default function GlobalCreditsView() {
                   <p className="text-slate-500 font-medium text-sm">
                     Sei sicuro di voler eliminare il credito <span className="font-black text-slate-900">&quot;{paymentToDelete.title}&quot;</span>?
                   </p>
-                  <p className="text-red-500 font-bold text-[10px] uppercase tracking-widest mt-4 bg-red-50 py-2 rounded-lg">Questa operazione è irreversibile</p>
+                  <p className="text-red-500 font-bold text-xs uppercase tracking-widest mt-4 bg-red-50 py-2 rounded-lg">Questa operazione è irreversibile</p>
                 </div>
                 <div className="flex gap-3 p-6 pt-0">
                   <Button 
                     variant="ghost" 
-                    className="flex-1 h-12 rounded-xl text-slate-400 font-black uppercase text-[10px] tracking-widest"
+                    className="flex-1 h-12 rounded-xl text-slate-400 font-black uppercase text-xs tracking-widest"
                     onClick={() => setPaymentToDelete(null)}
                   >
                     Annulla
                   </Button>
                   <Button 
-                    className="flex-1 bg-red-600 text-white hover:bg-red-700 h-12 rounded-xl font-black shadow-lg shadow-red-100 uppercase text-[10px] tracking-widest"
+                    className="flex-1 bg-red-600 text-white hover:bg-red-700 h-12 rounded-xl font-black shadow-lg shadow-red-100 uppercase text-xs tracking-widest"
                     onClick={() => handleDelete(paymentToDelete)}
                   >
                     Sì, Elimina
@@ -1088,7 +1088,7 @@ function StatsCard({ title, value, icon, color }: { title: string, value: number
     <Card className={`rounded-xl border-2 ${bgColors[color]} shadow-lg overflow-hidden transition-all hover:scale-[1.03]`}>
       <CardHeader className="pb-1 p-5">
         <div className="flex items-center justify-between">
-          <p className="text-[9px] font-black uppercase tracking-[0.2em] opacity-70">{title}</p>
+          <p className="text-xs font-black uppercase tracking-[0.2em] opacity-70">{title}</p>
           <div className="p-1.5 bg-white/50 rounded-lg">{icon}</div>
         </div>
       </CardHeader>
@@ -1103,7 +1103,7 @@ function FilterTab({ active, onClick, label }: { active: boolean, onClick: () =>
   return (
     <button 
       onClick={() => { playBeep(); onClick(); }}
-      className={`px-4 h-8 rounded-lg text-[9px] font-black uppercase tracking-widest transition-all active:scale-[0.95] ${
+      className={`px-4 h-8 rounded-lg text-xs font-black uppercase tracking-widest transition-all active:scale-[0.95] ${
         active 
           ? 'bg-slate-900 text-white shadow-md' 
           : 'text-slate-400 hover:text-slate-600 hover:bg-slate-50'

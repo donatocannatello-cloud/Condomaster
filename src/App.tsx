@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Toaster } from '@/components/ui/sonner';
 import { getLocalProfile } from './services/authService';
+import { applyFontScale, getFontScale } from './services/settingsService';
 import AdminDashboard from './components/AdminDashboard';
 import { Building2, Wallet, Settings } from 'lucide-react';
 
@@ -8,6 +9,10 @@ export default function App() {
   const [profile] = useState(getLocalProfile());
   const [activeAdminTab, setActiveAdminTab] = useState<'condos' | 'credits' | 'settings'>('condos');
   const [dashboardKey, setDashboardKey] = useState(0);
+
+  useEffect(() => {
+    applyFontScale(getFontScale());
+  }, []);
 
   return (
     <div className="min-h-screen text-slate-900 font-sans selection:bg-indigo-600 selection:text-white bg-slate-50">
@@ -28,7 +33,7 @@ export default function App() {
                   <Building2 className="w-6 h-6" />
                 </div>
                 <h1 className="text-xl font-black tracking-tight hidden sm:block text-slate-900">
-                  CondoMaster <span className="font-bold text-[10px] ml-1 text-indigo-600 uppercase tracking-[0.2em] bg-indigo-50 px-2 py-1 rounded">Pro</span>
+                  CondoMaster <span className="font-bold text-xs ml-1 text-indigo-600 uppercase tracking-[0.2em] bg-indigo-50 px-2 py-1 rounded">Pro</span>
                 </h1>
               </button>
 
@@ -72,7 +77,7 @@ export default function App() {
             <div className="flex items-center gap-6">
               <div className="flex flex-col items-end hidden sm:flex">
                 <span className="text-sm font-bold text-slate-900">{profile.displayName}</span>
-                <span className="text-[10px] text-slate-500 uppercase font-black tracking-widest">
+                <span className="text-xs text-slate-500 uppercase font-black tracking-widest">
                   Amministratore
                 </span>
               </div>
@@ -91,7 +96,7 @@ export default function App() {
         </main>
       </div>
 
-      <div className="fixed bottom-2 right-3 text-[9px] font-mono text-slate-300 select-none pointer-events-none z-50">
+      <div className="fixed bottom-2 right-3 text-xs font-mono text-slate-300 select-none pointer-events-none z-50">
         build {__BUILD_ID__}
       </div>
     </div>
