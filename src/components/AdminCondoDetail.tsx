@@ -609,7 +609,7 @@ export default function AdminCondoDetail({ condo, onBack }: AdminCondoDetailProp
 
         <TabsContent value="units">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
-            <Card className="lg:col-span-1 h-fit rounded-2xl border border-slate-200 sticky top-24 shadow-xl shadow-slate-200/50 overflow-hidden">
+            <Card className="order-2 lg:order-1 lg:col-span-1 h-fit rounded-2xl border border-slate-200 lg:sticky lg:top-24 shadow-xl shadow-slate-200/50 overflow-hidden">
               <div className="bg-slate-900 p-6 border-b border-slate-800">
                 <div className="flex items-center gap-3">
                    <div className="p-2.5 bg-white/10 rounded-xl">
@@ -671,7 +671,7 @@ export default function AdminCondoDetail({ condo, onBack }: AdminCondoDetailProp
               </form>
             </Card>
 
-            <Card className="lg:col-span-2 rounded-2xl border border-slate-200 p-0 overflow-hidden shadow-xl shadow-slate-200/50">
+            <Card className="order-1 lg:order-2 lg:col-span-2 rounded-2xl border border-slate-200 p-0 overflow-hidden shadow-xl shadow-slate-200/50">
               <div className="px-8 py-6 bg-slate-50 border-b border-slate-200 flex items-center justify-between">
                 <div>
                   <h3 className="text-2xl font-black text-slate-900 tracking-tighter uppercase">Anagrafica Fabbricato</h3>
@@ -740,7 +740,7 @@ export default function AdminCondoDetail({ condo, onBack }: AdminCondoDetailProp
 
         <TabsContent value="expenses">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            <Card className="lg:col-span-1 h-fit rounded-2xl border border-slate-200 sticky top-24 shadow-xl shadow-slate-200/50 overflow-hidden">
+            <Card className="order-2 lg:order-1 lg:col-span-1 h-fit rounded-2xl border border-slate-200 lg:sticky lg:top-24 shadow-xl shadow-slate-200/50 overflow-hidden">
                <div className="bg-indigo-600 p-6">
                 <div className="flex items-center gap-3">
                    <div className="p-2.5 bg-white/10 rounded-xl">
@@ -830,7 +830,7 @@ export default function AdminCondoDetail({ condo, onBack }: AdminCondoDetailProp
               </form>
             </Card>
 
-            <Card className="lg:col-span-2 rounded-2xl border border-slate-200 p-0 overflow-hidden shadow-xl shadow-slate-200/50">
+            <Card className="order-1 lg:order-2 lg:col-span-2 rounded-2xl border border-slate-200 p-0 overflow-hidden shadow-xl shadow-slate-200/50">
                <div className="px-8 py-6 bg-slate-50 border-b border-slate-200">
                   <h3 className="text-2xl font-black text-slate-900 tracking-tighter uppercase">Libro Giornale Spese</h3>
                   <p className="text-slate-400 text-[9px] font-black uppercase tracking-[0.2em] mt-1.5">Movimenti contabili certificati</p>
@@ -1028,7 +1028,7 @@ export default function AdminCondoDetail({ condo, onBack }: AdminCondoDetailProp
 
         <TabsContent value="payments">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            <Card className="lg:col-span-1 h-fit rounded-2xl border border-slate-200 sticky top-24 shadow-xl shadow-slate-200/50 overflow-hidden">
+            <Card className="order-2 lg:order-1 lg:col-span-1 h-fit rounded-2xl border border-slate-200 lg:sticky lg:top-24 shadow-xl shadow-slate-200/50 overflow-hidden">
                <div className="bg-emerald-600 p-6">
                 <div className="flex items-center gap-3">
                    <div className="p-2.5 bg-white/10 rounded-xl">
@@ -1187,7 +1187,7 @@ export default function AdminCondoDetail({ condo, onBack }: AdminCondoDetailProp
               </form>
             </Card>
 
-            <div className="lg:col-span-2 space-y-6">
+            <div className="order-1 lg:order-2 lg:col-span-2 space-y-6">
 
               <Card className="rounded-2xl border border-slate-200 p-0 overflow-hidden shadow-xl shadow-slate-200/50 bg-white">
                  <div className="px-8 py-6 bg-slate-50 border-b border-slate-200 flex items-center justify-between">
