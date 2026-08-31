@@ -14,7 +14,15 @@ const config: CapacitorConfig = {
   webDir: 'dist',
   server: devServerUrl
     ? { url: devServerUrl, cleartext: true }
-    : { androidScheme: 'https' }
+    : { androidScheme: 'https' },
+  android: {
+    // Android 15 (targetSdk 35) forces edge-to-edge, drawing the WebView
+    // under the status bar and navigation bar. Capacitor's own margin
+    // adjustment for this is opt-in (default "disable"); "auto" turns it
+    // on so the WebView gets proper top/bottom margins on API 35+ instead
+    // of its content overlapping the system bars.
+    adjustMarginsForEdgeToEdge: 'auto'
+  }
 };
 
 export default config;
