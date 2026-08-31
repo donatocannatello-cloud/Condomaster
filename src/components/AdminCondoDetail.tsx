@@ -551,13 +551,13 @@ export default function AdminCondoDetail({ condo, onBack }: AdminCondoDetailProp
       </div>
 
       <Tabs defaultValue="overview" className="w-full">
-        <div className="w-full overflow-x-auto no-scrollbar scroll-fade-x pb-1.5 mb-6">
-          <TabsList className="bg-slate-100 p-1 rounded-xl border border-slate-200 h-11 shadow-inner flex w-max sm:w-auto min-w-full">
-            <TabsTrigger value="overview" className="rounded-lg gap-2 data-[state=active]:bg-white data-[state=active]:text-indigo-700 data-[state=active]:shadow-sm text-slate-500 transition-all px-5 sm:px-6 font-black text-xs uppercase tracking-widest whitespace-nowrap"><Layers className="w-3.5 h-3.5 stroke-[3]" /> Panoramica</TabsTrigger>
-            <TabsTrigger value="units" className="rounded-lg gap-2 data-[state=active]:bg-white data-[state=active]:text-indigo-700 data-[state=active]:shadow-sm text-slate-500 transition-all px-5 sm:px-6 font-black text-xs uppercase tracking-widest whitespace-nowrap"><Users className="w-3.5 h-3.5 stroke-[3]" /> Anagrafica</TabsTrigger>
-            <TabsTrigger value="expenses" className="rounded-lg gap-2 data-[state=active]:bg-white data-[state=active]:text-indigo-700 data-[state=active]:shadow-sm text-slate-500 transition-all px-5 sm:px-6 font-black text-xs uppercase tracking-widest whitespace-nowrap"><Receipt className="w-3.5 h-3.5 stroke-[3]" /> Spese</TabsTrigger>
-            <TabsTrigger value="payments" className="rounded-lg gap-2 data-[state=active]:bg-white data-[state=active]:text-indigo-700 data-[state=active]:shadow-sm text-slate-500 transition-all px-5 sm:px-6 font-black text-xs uppercase tracking-widest whitespace-nowrap"><CreditCard className="w-3.5 h-3.5 stroke-[3]" /> Incassi</TabsTrigger>
-            <TabsTrigger value="report" className="rounded-lg gap-2 data-[state=active]:bg-white data-[state=active]:text-indigo-700 data-[state=active]:shadow-sm text-slate-500 transition-all px-5 sm:px-6 font-black text-xs uppercase tracking-widest whitespace-nowrap"><Calculator className="w-3.5 h-3.5 stroke-[3]" /> Ripartizione</TabsTrigger>
+        <div className="w-full mb-6">
+          <TabsList className="bg-slate-100 p-1 rounded-xl border border-slate-200 shadow-inner grid grid-cols-2 sm:flex sm:h-11 gap-1 h-auto w-full sm:w-auto">
+            <TabsTrigger value="overview" className="rounded-lg gap-1.5 data-[state=active]:bg-white data-[state=active]:text-indigo-700 data-[state=active]:shadow-sm text-slate-500 transition-all px-2 py-2 sm:px-6 font-black text-xs uppercase tracking-widest"><Layers className="w-3.5 h-3.5 stroke-[3] shrink-0" /> <span>Panoramica</span></TabsTrigger>
+            <TabsTrigger value="units" className="rounded-lg gap-1.5 data-[state=active]:bg-white data-[state=active]:text-indigo-700 data-[state=active]:shadow-sm text-slate-500 transition-all px-2 py-2 sm:px-6 font-black text-xs uppercase tracking-widest"><Users className="w-3.5 h-3.5 stroke-[3] shrink-0" /> <span>Anagrafica</span></TabsTrigger>
+            <TabsTrigger value="expenses" className="rounded-lg gap-1.5 data-[state=active]:bg-white data-[state=active]:text-indigo-700 data-[state=active]:shadow-sm text-slate-500 transition-all px-2 py-2 sm:px-6 font-black text-xs uppercase tracking-widest"><Receipt className="w-3.5 h-3.5 stroke-[3] shrink-0" /> <span>Spese</span></TabsTrigger>
+            <TabsTrigger value="payments" className="rounded-lg gap-1.5 data-[state=active]:bg-white data-[state=active]:text-indigo-700 data-[state=active]:shadow-sm text-slate-500 transition-all px-2 py-2 sm:px-6 font-black text-xs uppercase tracking-widest"><CreditCard className="w-3.5 h-3.5 stroke-[3] shrink-0" /> <span>Incassi</span></TabsTrigger>
+            <TabsTrigger value="report" className="rounded-lg gap-1.5 data-[state=active]:bg-white data-[state=active]:text-indigo-700 data-[state=active]:shadow-sm text-slate-500 transition-all px-2 py-2 sm:px-6 font-black text-xs uppercase tracking-widest"><Calculator className="w-3.5 h-3.5 stroke-[3] shrink-0" /> <span>Ripartizione</span></TabsTrigger>
           </TabsList>
         </div>
 
