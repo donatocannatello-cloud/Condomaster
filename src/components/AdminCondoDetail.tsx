@@ -639,13 +639,13 @@ export default function AdminCondoDetail({ condo, onBack }: AdminCondoDetailProp
                     </p>
                    </div>
                 </div>
-                {isUnitFormOpen || editingUnit ? (
+                {isUnitFormOpen ? (
                   <ChevronUp className="w-5 h-5 text-white/60 shrink-0" />
                 ) : (
                   <ChevronDown className="w-5 h-5 text-white/60 shrink-0" />
                 )}
               </div>
-              {(isUnitFormOpen || editingUnit) && (
+              {isUnitFormOpen && (
               <form onSubmit={handleAddUnit}>
                 <CardContent className="space-y-6 p-6">
                   <div className="space-y-2">
@@ -694,12 +694,12 @@ export default function AdminCondoDetail({ condo, onBack }: AdminCondoDetailProp
             </Card>
 
             <Card className="order-1 lg:order-2 lg:col-span-2 rounded-2xl border border-slate-200 p-0 overflow-hidden shadow-xl shadow-slate-200/50">
-              <div className="px-8 py-6 bg-slate-50 border-b border-slate-200 flex items-center justify-between">
+              <div className="px-8 py-6 bg-slate-50 border-b border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                 <div>
                   <h3 className="text-2xl font-black text-slate-900 tracking-tighter uppercase">Anagrafica Fabbricato</h3>
                   <p className="text-slate-400 text-xs font-black uppercase tracking-[0.2em] mt-1.5">Dati catastali e coefficienti di riparto</p>
                 </div>
-                <Badge className="bg-indigo-100 text-indigo-700 font-black px-3 py-1 rounded-full border-none uppercase tracking-widest text-xs">
+                <Badge className="bg-indigo-100 text-indigo-700 font-black px-3 py-1 rounded-full border-none uppercase tracking-widest text-xs self-start sm:self-auto">
                   {units.length} Unit&agrave;
                 </Badge>
               </div>
@@ -783,13 +783,13 @@ export default function AdminCondoDetail({ condo, onBack }: AdminCondoDetailProp
                     </p>
                    </div>
                 </div>
-                {isExpenseFormOpen || editingExpense ? (
+                {isExpenseFormOpen ? (
                   <ChevronUp className="w-5 h-5 text-white/60 shrink-0" />
                 ) : (
                   <ChevronDown className="w-5 h-5 text-white/60 shrink-0" />
                 )}
               </div>
-              {(isExpenseFormOpen || editingExpense) && (
+              {isExpenseFormOpen && (
               <form onSubmit={handleAddExpense}>
                 <CardContent className="space-y-6 p-6 pt-6">
                   <div className="space-y-2">
@@ -1080,13 +1080,13 @@ export default function AdminCondoDetail({ condo, onBack }: AdminCondoDetailProp
                     <p className="text-xs text-white/50 uppercase font-black tracking-[0.2em] mt-0.5">Rate e Canoni di Locazione</p>
                    </div>
                 </div>
-                {isPaymentFormOpen || editingPayment ? (
+                {isPaymentFormOpen ? (
                   <ChevronUp className="w-5 h-5 text-white/60 shrink-0" />
                 ) : (
                   <ChevronDown className="w-5 h-5 text-white/60 shrink-0" />
                 )}
               </div>
-              {(isPaymentFormOpen || editingPayment) && (
+              {isPaymentFormOpen && (
               <form onSubmit={handleAddPayment}>
                 <CardContent className="space-y-6 p-6 pt-6">
                   <div className="space-y-2">
@@ -1238,12 +1238,12 @@ export default function AdminCondoDetail({ condo, onBack }: AdminCondoDetailProp
             <div className="order-1 lg:order-2 lg:col-span-2 space-y-6">
 
               <Card className="rounded-2xl border border-slate-200 p-0 overflow-hidden shadow-xl shadow-slate-200/50 bg-white">
-                 <div className="px-8 py-6 bg-slate-50 border-b border-slate-200 flex items-center justify-between">
+                 <div className="px-8 py-6 bg-slate-50 border-b border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                   <div>
                     <h3 className="text-2xl font-black text-slate-900 tracking-tighter uppercase">Registro Incassi / Crediti</h3>
                     <p className="text-slate-400 text-xs font-black uppercase tracking-[0.2em] mt-1.5">Monitoraggio flussi finanziari in entrata</p>
                   </div>
-                   <div className="flex gap-3">
+                   <div className="flex flex-wrap gap-3">
                       <div className="text-right px-4 py-1.5 bg-emerald-50 rounded-xl border border-emerald-100">
                         <p className="text-xs font-black uppercase text-emerald-600 tracking-widest leading-none mb-1">Incassato</p>
                         <p className="text-lg font-black text-emerald-700 leading-none">€{payments.filter(p => p.status === 'paid').reduce((s,p) => s+p.amount, 0).toLocaleString('it-IT', { minimumFractionDigits: 2 })}</p>
@@ -1361,6 +1361,312 @@ export default function AdminCondoDetail({ condo, onBack }: AdminCondoDetailProp
           </div>
         </TabsContent>
       </Tabs>
+
+      {/* Edit Unit Modal */}
+      {editingUnit && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-md">
+          <motion.div
+            initial={{ scale: 0.9, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            className="w-full max-w-xl max-h-[85vh] overflow-y-auto"
+          >
+            <Card className="rounded-[2.5rem] border-none shadow-2xl overflow-hidden bg-white">
+              <div className="bg-slate-900 p-8">
+                <h3 className="text-xl font-black text-white uppercase tracking-tight">Modifica Unità</h3>
+                <p className="text-white/40 font-black uppercase text-xs tracking-[0.2em] mt-2">Aggiornamento Dati Catastali</p>
+              </div>
+              <form onSubmit={handleAddUnit}>
+                <CardContent className="space-y-6 p-8">
+                  <div className="space-y-2">
+                    <Label className="text-slate-900 font-black text-xs uppercase tracking-widest opacity-60">Identificativo Unità</Label>
+                    <Input className="pro-input h-11 text-xs font-bold" value={newUnit.number} onChange={e => setNewUnit({...newUnit, number: e.target.value})} placeholder="es. Int. 1 - Scala A" />
+                  </div>
+                  <div className="space-y-2">
+                    <Label className="text-slate-900 font-black text-xs uppercase tracking-widest opacity-60">Quota Millesimale</Label>
+                    <Input className="pro-input h-11 font-mono text-indigo-700 text-xl font-black" type="number" step="0.01" value={newUnit.millesimi} onChange={e => setNewUnit({...newUnit, millesimi: e.target.value as any})} placeholder="000.00" />
+                  </div>
+                  <div className="pt-4 space-y-6 border-t border-slate-100">
+                    <div className="space-y-4">
+                      <div className="space-y-1.5">
+                        <Label className="text-slate-900 font-black text-xs uppercase tracking-widest opacity-60">Nominativo Proprietario</Label>
+                        <Input className="pro-input h-10 text-sm font-bold" value={newUnit.ownerName} onChange={e => setNewUnit({...newUnit, ownerName: e.target.value})} placeholder="Rossi Mario" />
+                      </div>
+                      <div className="space-y-1.5">
+                        <Label className="text-slate-900 font-black text-xs uppercase tracking-widest opacity-60">Telefono Proprietario (WhatsApp)</Label>
+                        <Input className="pro-input h-10 text-xs font-medium" value={newUnit.ownerPhone || ''} onChange={e => setNewUnit({...newUnit, ownerPhone: e.target.value})} placeholder="+39 333 1234567" />
+                      </div>
+                    </div>
+                    <div className="space-y-4 pt-4 border-t border-dashed border-slate-100">
+                      <div className="space-y-1.5">
+                        <Label className="text-slate-900 font-black text-xs uppercase tracking-widest opacity-60">Conduttore / Inquilino</Label>
+                        <Input className="pro-input h-10 text-sm font-medium" value={newUnit.tenantName} onChange={e => setNewUnit({...newUnit, tenantName: e.target.value})} placeholder="Opzionale" />
+                      </div>
+                      <div className="space-y-1.5">
+                        <Label className="text-slate-900 font-black text-xs uppercase tracking-widest opacity-60">Telefono Conduttore (WhatsApp)</Label>
+                        <Input className="pro-input h-10 text-xs font-medium" value={newUnit.tenantPhone || ''} onChange={e => setNewUnit({...newUnit, tenantPhone: e.target.value})} placeholder="+39 333 7654321" />
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
+                <CardFooter className="flex gap-3 p-8 pt-0">
+                  <Button variant="ghost" type="button" onClick={() => { setEditingUnit(null); setNewUnit({number:'',millesimi:'' as unknown as number,ownerName:'',ownerPhone:'',tenantName:'',tenantPhone:''}); }} className="flex-1 h-12 rounded-xl text-slate-400 font-black uppercase text-xs tracking-widest">
+                    Annulla
+                  </Button>
+                  <Button type="submit" className="flex-1 bg-slate-900 text-white hover:bg-indigo-600 h-12 rounded-xl font-black shadow-lg uppercase text-xs tracking-widest">
+                    Salva Modifiche
+                  </Button>
+                </CardFooter>
+              </form>
+            </Card>
+          </motion.div>
+        </div>
+      )}
+
+      {/* Edit Expense Modal */}
+      {editingExpense && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-md">
+          <motion.div
+            initial={{ scale: 0.9, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            className="w-full max-w-xl max-h-[85vh] overflow-y-auto"
+          >
+            <Card className="rounded-[2.5rem] border-none shadow-2xl overflow-hidden bg-white">
+              <div className="bg-indigo-600 p-8">
+                <h3 className="text-xl font-black text-white uppercase tracking-tight">Modifica Spesa</h3>
+                <p className="text-white/50 font-black uppercase text-xs tracking-[0.2em] mt-2">Aggiornamento Contabile</p>
+              </div>
+              <form onSubmit={handleAddExpense}>
+                <CardContent className="space-y-6 p-8">
+                  <div className="space-y-2">
+                    <Label className="text-slate-900 font-black text-xs uppercase tracking-widest opacity-60">Descrizione Oneri</Label>
+                    <Input className="pro-input h-11 font-black text-sm" value={newExpense.title} onChange={e => setNewExpense({...newExpense, title: e.target.value})} placeholder="es. Manutenzione Giardino" />
+                  </div>
+                  <div className="space-y-2">
+                    <Label className="text-slate-900 font-black text-xs uppercase tracking-widest opacity-60">Importo Fattura (€)</Label>
+                    <Input
+                      className={`pro-input h-11 font-mono text-xl font-black tracking-tighter ${newExpense.amount < 0 ? 'text-red-600' : 'text-emerald-700'}`}
+                      type="number"
+                      step="0.01"
+                      value={newExpense.amount}
+                      onChange={e => setNewExpense({...newExpense, amount: e.target.value as any})}
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label className="text-slate-900 font-black text-xs uppercase tracking-widest opacity-60">Data Fattura</Label>
+                    <Input type="date" className="pro-input h-11 font-bold text-sm" value={newExpense.date} onChange={e => setNewExpense({...newExpense, date: e.target.value})} />
+                  </div>
+                  <div className="pt-3 space-y-4 border-t border-slate-100">
+                    <div className="space-y-2">
+                      <Label className="text-slate-900 font-black text-xs uppercase tracking-widest opacity-60">Classificazione</Label>
+                      <Select value={newExpense.category} onValueChange={(v: any) => setNewExpense({...newExpense, category: v})}>
+                        <SelectTrigger className="pro-input h-10 font-bold text-xs">
+                          <SelectValue placeholder="Seleziona">
+                            {newExpense.category === 'ordinaria' ? 'ORD (Ordinaria / Mista)' :
+                             newExpense.category === 'straordinaria' ? 'EXT (Straordinaria / Proprietario)' : null}
+                          </SelectValue>
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="ordinaria" className="font-bold">ORD (Ordinaria / Mista)</SelectItem>
+                          <SelectItem value="straordinaria" className="font-bold">EXT (Straordinaria / Proprietario)</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                    <div className="space-y-2">
+                      <Label className="text-slate-900 font-black text-xs uppercase tracking-widest opacity-60">Tipologia Costo</Label>
+                      <Select value={newExpense.type} onValueChange={(v: any) => setNewExpense({...newExpense, type: v})}>
+                        <SelectTrigger className="pro-input h-10 font-bold text-xs">
+                          <SelectValue placeholder="Seleziona">
+                            {newExpense.type === 'amministrazione' ? 'Amministrazione' :
+                             newExpense.type === 'pulizia' ? 'Pulizia / Servizi' :
+                             newExpense.type === 'ascensore' ? 'Ascensore / Impianti' :
+                             newExpense.type === 'riscaldamento' ? 'Energia / Gas' :
+                             newExpense.type === 'struttura' ? 'Edilizia / Struttura' :
+                             newExpense.type === 'altro' ? 'Altro' : null}
+                          </SelectValue>
+                        </SelectTrigger>
+                        <SelectContent className="font-bold">
+                          <SelectItem value="amministrazione">Amministrazione</SelectItem>
+                          <SelectItem value="pulizia">Pulizia / Servizi</SelectItem>
+                          <SelectItem value="ascensore">Ascensore / Impianti</SelectItem>
+                          <SelectItem value="riscaldamento">Energia / Gas</SelectItem>
+                          <SelectItem value="struttura">Edilizia / Struttura</SelectItem>
+                          <SelectItem value="altro">Altro</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                  </div>
+                </CardContent>
+                <CardFooter className="flex gap-3 p-8 pt-0">
+                  <Button variant="ghost" type="button" onClick={() => { setEditingExpense(null); setNewExpense({title:'',amount:'' as unknown as number,category:'ordinaria',type:'altro',paidBy:'misto', date: format(new Date(), 'yyyy-MM-dd')}); }} className="flex-1 h-12 rounded-xl text-slate-400 font-black uppercase text-xs tracking-widest">
+                    Annulla
+                  </Button>
+                  <Button type="submit" className="flex-1 bg-indigo-600 text-white hover:bg-indigo-700 h-12 rounded-xl font-black shadow-lg uppercase text-xs tracking-widest">
+                    Salva Modifiche
+                  </Button>
+                </CardFooter>
+              </form>
+            </Card>
+          </motion.div>
+        </div>
+      )}
+
+      {/* Edit Payment Modal */}
+      {editingPayment && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-md">
+          <motion.div
+            initial={{ scale: 0.9, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            className="w-full max-w-xl max-h-[85vh] overflow-y-auto"
+          >
+            <Card className="rounded-[2.5rem] border-none shadow-2xl overflow-hidden bg-white">
+              <div className="bg-emerald-600 p-8">
+                <h3 className="text-xl font-black text-white uppercase tracking-tight">Modifica Pagamento</h3>
+                <p className="text-white/50 font-black uppercase text-xs tracking-[0.2em] mt-2">Rate e Canoni di Locazione</p>
+              </div>
+              <form onSubmit={handleAddPayment}>
+                <CardContent className="space-y-6 p-8">
+                  <div className="space-y-2">
+                    <Label className="text-slate-900 font-black text-xs uppercase tracking-widest opacity-60">Unità Destinataria</Label>
+                    <Select value={newPayment.unitId} onValueChange={(v) => {
+                      const unit = units.find(u => u.id === v);
+                      setNewPayment({
+                        ...newPayment,
+                        unitId: v,
+                        recipientName: unit ? unit.ownerName : '',
+                        recipientUid: unit ? unit.ownerUid || '' : '',
+                        recipientType: 'owner'
+                      });
+                    }}>
+                      <SelectTrigger className="pro-input h-10 font-bold text-xs">
+                        <SelectValue placeholder="Seleziona Unità">
+                          {newPayment.unitId && units.find(u => u.id === newPayment.unitId) ? (
+                            `${units.find(u => u.id === newPayment.unitId)?.number} - ${units.find(u => u.id === newPayment.unitId)?.ownerName}`
+                          ) : null}
+                        </SelectValue>
+                      </SelectTrigger>
+                      <SelectContent className="max-h-[300px]">
+                        {units.map(u => (
+                          <SelectItem key={u.id} value={u.id} className="font-bold">{u.number} - {u.ownerName}</SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+
+                  {newPayment.unitId && (
+                    <div className="space-y-2">
+                      <Label className="text-slate-900 font-black text-xs uppercase tracking-widest opacity-60">Soggetto Debitore (Persona Riconducibile)</Label>
+                      <Select
+                        value={newPayment.recipientType || 'owner'}
+                        onValueChange={(typeVal: 'owner' | 'tenant') => {
+                          const unit = units.find(u => u.id === newPayment.unitId);
+                          if (!unit) return;
+                          if (typeVal === 'owner') {
+                            setNewPayment({
+                              ...newPayment,
+                              recipientType: 'owner',
+                              recipientName: unit.ownerName,
+                              recipientUid: unit.ownerUid || ''
+                            });
+                          } else {
+                            setNewPayment({
+                              ...newPayment,
+                              recipientType: 'tenant',
+                              recipientName: unit.tenantName || '',
+                              recipientUid: unit.tenantUid || ''
+                            });
+                          }
+                        }}
+                      >
+                        <SelectTrigger className="pro-input h-10 font-bold text-xs">
+                          <SelectValue placeholder="Seleziona Soggetto">
+                            {newPayment.recipientType === 'tenant' ? (
+                              `Inquilino: ${newPayment.recipientName || 'Nessuno'}`
+                            ) : (
+                              `Proprietario: ${newPayment.recipientName || 'Nessuno'}`
+                            )}
+                          </SelectValue>
+                        </SelectTrigger>
+                        <SelectContent className="font-bold">
+                          <SelectItem value="owner">Proprietario: {units.find(u => u.id === newPayment.unitId)?.ownerName || 'Caricamento...'}</SelectItem>
+                          {units.find(u => u.id === newPayment.unitId)?.tenantName && (
+                            <SelectItem value="tenant">Inquilino: {units.find(u => u.id === newPayment.unitId)?.tenantName}</SelectItem>
+                          )}
+                        </SelectContent>
+                      </Select>
+                    </div>
+                  )}
+                  <div className="space-y-2">
+                    <Label className="text-slate-900 font-black text-xs uppercase tracking-widest opacity-60">Titolo del Pagamento</Label>
+                    <Input className="pro-input h-11 font-black text-sm" value={newPayment.title} onChange={e => setNewPayment({...newPayment, title: e.target.value})} placeholder="es. Rata 1 - Gennaio" />
+                  </div>
+                  <div className="grid grid-cols-2 gap-3">
+                    <div className="space-y-2">
+                      <Label className="text-slate-900 font-black text-xs uppercase tracking-widest opacity-60">Importo Totale (€)</Label>
+                      <Input className="pro-input h-11 font-mono text-indigo-700 text-lg font-black tracking-tighter" type="number" step="0.01" value={newPayment.amount} onChange={e => setNewPayment({...newPayment, amount: e.target.value as any})} />
+                    </div>
+                    <div className="space-y-2">
+                      <Label className="text-slate-900 font-black text-xs uppercase tracking-widest opacity-60">Importo Pagato (€)</Label>
+                      <Input className="pro-input h-11 font-mono text-emerald-700 text-lg font-black tracking-tighter" type="number" step="0.01" value={newPayment.paidAmount} onChange={e => setNewPayment({...newPayment, paidAmount: e.target.value as any})} />
+                    </div>
+                  </div>
+                  <div className="pt-3 space-y-4 border-t border-slate-100">
+                    <div className="grid grid-cols-2 gap-3">
+                      <div className="space-y-2">
+                        <Label className="text-slate-900 font-black text-xs uppercase tracking-widest opacity-60">Scadenza</Label>
+                        <Input type="date" className="pro-input h-10 font-bold text-xs" value={newPayment.dueDate} onChange={e => setNewPayment({...newPayment, dueDate: e.target.value})} />
+                      </div>
+                      <div className="space-y-2">
+                        <Label className="text-slate-900 font-black text-xs uppercase tracking-widest opacity-60">Tipologia</Label>
+                        <Select value={newPayment.type} onValueChange={(v: any) => setNewPayment({...newPayment, type: v})}>
+                          <SelectTrigger className="pro-input h-10 font-bold text-xs">
+                            <SelectValue>
+                              {newPayment.type === 'rate' ? 'Rata Cond.' :
+                               newPayment.type === 'rent' ? 'Canone Affit.' :
+                               newPayment.type === 'extra' ? 'Extra / Altro' : null}
+                            </SelectValue>
+                          </SelectTrigger>
+                          <SelectContent className="font-bold">
+                            <SelectItem value="rate">Rata Cond.</SelectItem>
+                            <SelectItem value="rent">Canone Affit.</SelectItem>
+                            <SelectItem value="extra">Extra / Altro</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </div>
+                    </div>
+                    <div className="space-y-2">
+                      <Label className="text-slate-900 font-black text-xs uppercase tracking-widest opacity-60">Stato Pagamento</Label>
+                      <Select value={newPayment.status} onValueChange={(v: any) => setNewPayment({...newPayment, status: v})}>
+                        <SelectTrigger className="pro-input h-10 font-bold text-xs">
+                          <SelectValue>
+                            {newPayment.status === 'pending' ? 'Pendente / Emesso' :
+                             newPayment.status === 'paid' ? 'Saldato / Incassato' :
+                             newPayment.status === 'overdue' ? 'Scaduto / Insoluto' :
+                             newPayment.status === 'partial' ? 'Pagato Parzialmente' : null}
+                          </SelectValue>
+                        </SelectTrigger>
+                        <SelectContent className="font-bold">
+                          <SelectItem value="pending">Pendente / Emesso</SelectItem>
+                          <SelectItem value="paid">Saldato / Incassato</SelectItem>
+                          <SelectItem value="partial">Pagato Parzialmente</SelectItem>
+                          <SelectItem value="overdue">Scaduto / Insoluto</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                  </div>
+                </CardContent>
+                <CardFooter className="flex gap-3 p-8 pt-0">
+                  <Button variant="ghost" type="button" onClick={() => { setEditingPayment(null); setNewPayment({unitId:'',title:'',amount:0,dueDate:format(new Date(), 'yyyy-MM-dd'),type:'rate',status:'pending'}); }} className="flex-1 h-12 rounded-xl text-slate-400 font-black uppercase text-xs tracking-widest">
+                    Annulla
+                  </Button>
+                  <Button type="submit" className="flex-1 bg-emerald-600 text-white hover:bg-emerald-700 h-12 rounded-xl font-black shadow-lg uppercase text-xs tracking-widest">
+                    Salva Modifiche
+                  </Button>
+                </CardFooter>
+              </form>
+            </Card>
+          </motion.div>
+        </div>
+      )}
 
       {/* Delete Confirmation Dialog */}
       {deleteConfirm && (
