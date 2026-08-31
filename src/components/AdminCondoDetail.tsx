@@ -76,6 +76,7 @@ import { format } from 'date-fns';
 import { it } from 'date-fns/locale';
 import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
+import { saveOrShareBase64File } from '@/src/lib/exportFile';
 
 interface AdminCondoDetailProps {
   condo: Condominium;
@@ -440,7 +441,7 @@ export default function AdminCondoDetail({ condo, onBack }: AdminCondoDetailProp
     }
   };
 
-  const handleExportPDF = () => {
+  const handleExportPDF = async () => {
     try {
       const doc = new jsPDF();
       const timestamp = format(new Date(), 'dd/MM/yyyy HH:mm');
@@ -525,7 +526,9 @@ export default function AdminCondoDetail({ condo, onBack }: AdminCondoDetailProp
         }
       });
 
-      doc.save(`Bilancio_${condo.name.replace(/\s+/g, '_')}_${format(new Date(), 'yyyyMMdd')}.pdf`);
+      const filename = `Bilancio_${condo.name.replace(/\s+/g, '_')}_${format(new Date(), 'yyyyMMdd')}.pdf`;
+      const base64 = doc.output('datauristring').split(',')[1];
+      await saveOrShareBase64File(filename, base64, 'application/pdf');
       toast.success("PDF generato con successo");
     } catch (error) {
       console.error("PDF Error:", error);

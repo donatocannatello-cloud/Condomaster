@@ -2,6 +2,7 @@ import React, { useState, useRef } from 'react';
 import { exportBackup, importBackup } from '../services/condoService';
 import { getLocalProfile, setLocalDisplayName } from '../services/authService';
 import { FONT_SCALE_DEFAULT, FONT_SCALE_MAX, FONT_SCALE_MIN, getFontScale, setFontScale } from '../services/settingsService';
+import { saveOrShareBase64File, utf8ToBase64 } from '../lib/exportFile';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -40,16 +41,10 @@ export default function AdminSettings() {
     setIsExporting(true);
     try {
       const data = await exportBackup();
-      const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
       const date = new Date().toISOString().slice(0, 10);
-      a.href = url;
-      a.download = `condomaster_backup_${date}.json`;
-      document.body.appendChild(a);
-      a.click();
-      a.remove();
-      URL.revokeObjectURL(url);
+      const filename = `condomaster_backup_${date}.json`;
+      const base64 = utf8ToBase64(JSON.stringify(data, null, 2));
+      await saveOrShareBase64File(filename, base64, 'application/json');
       toast.success("Backup esportato con successo");
     } catch (e: any) {
       toast.error("Errore durante l'esportazione: " + e.message);
