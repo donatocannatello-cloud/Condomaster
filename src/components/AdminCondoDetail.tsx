@@ -108,6 +108,12 @@ export default function AdminCondoDetail({ condo, onBack }: AdminCondoDetailProp
   const [editingPayment, setEditingPayment] = useState<Payment | null>(null);
   const [deleteConfirm, setDeleteConfirm] = useState<{ id: string, type: 'unit' | 'expense' | 'payment', title: string } | null>(null);
 
+  // "Add new" panels start collapsed; a click on the header toggles them,
+  // and they auto-open whenever an existing row is opened for editing.
+  const [isUnitFormOpen, setIsUnitFormOpen] = useState(false);
+  const [isExpenseFormOpen, setIsExpenseFormOpen] = useState(false);
+  const [isPaymentFormOpen, setIsPaymentFormOpen] = useState(false);
+
   const [newUnit, setNewUnit] = useState({ number: '', millesimi: '' as unknown as number, ownerName: '', ownerPhone: '', tenantName: '', tenantPhone: '' });
   const [newExpense, setNewExpense] = useState({ 
     title: '', 
@@ -613,12 +619,18 @@ export default function AdminCondoDetail({ condo, onBack }: AdminCondoDetailProp
         <TabsContent value="units">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
             <Card className="order-2 lg:order-1 lg:col-span-1 h-fit rounded-2xl border border-slate-200 lg:sticky lg:top-24 shadow-xl shadow-slate-200/50 overflow-hidden">
-              <div className="bg-slate-900 p-6 border-b border-slate-800">
-                <div className="flex items-center gap-3">
-                   <div className="p-2.5 bg-white/10 rounded-xl">
+              <div
+                role="button"
+                tabIndex={0}
+                onClick={() => setIsUnitFormOpen(o => !o)}
+                onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setIsUnitFormOpen(o => !o); } }}
+                className="bg-slate-900 p-6 border-b border-slate-800 flex items-center justify-between gap-3 cursor-pointer select-none"
+              >
+                <div className="flex items-center gap-3 min-w-0">
+                   <div className="p-2.5 bg-white/10 rounded-xl shrink-0">
                     <UserPlus className="w-5 h-5 text-white" />
                    </div>
-                   <div>
+                   <div className="min-w-0">
                     <h3 className="text-white font-black text-lg tracking-tight uppercase">
                       {editingUnit ? 'Modifica Unità' : 'Nuova Iscrizione'}
                     </h3>
@@ -627,7 +639,13 @@ export default function AdminCondoDetail({ condo, onBack }: AdminCondoDetailProp
                     </p>
                    </div>
                 </div>
+                {isUnitFormOpen || editingUnit ? (
+                  <ChevronUp className="w-5 h-5 text-white/60 shrink-0" />
+                ) : (
+                  <ChevronDown className="w-5 h-5 text-white/60 shrink-0" />
+                )}
               </div>
+              {(isUnitFormOpen || editingUnit) && (
               <form onSubmit={handleAddUnit}>
                 <CardContent className="space-y-6 p-6">
                   <div className="space-y-2">
@@ -672,6 +690,7 @@ export default function AdminCondoDetail({ condo, onBack }: AdminCondoDetailProp
                   )}
                 </CardFooter>
               </form>
+              )}
             </Card>
 
             <Card className="order-1 lg:order-2 lg:col-span-2 rounded-2xl border border-slate-200 p-0 overflow-hidden shadow-xl shadow-slate-200/50">
@@ -744,12 +763,18 @@ export default function AdminCondoDetail({ condo, onBack }: AdminCondoDetailProp
         <TabsContent value="expenses">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             <Card className="order-2 lg:order-1 lg:col-span-1 h-fit rounded-2xl border border-slate-200 lg:sticky lg:top-24 shadow-xl shadow-slate-200/50 overflow-hidden">
-               <div className="bg-indigo-600 p-6">
-                <div className="flex items-center gap-3">
-                   <div className="p-2.5 bg-white/10 rounded-xl">
+               <div
+                role="button"
+                tabIndex={0}
+                onClick={() => setIsExpenseFormOpen(o => !o)}
+                onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setIsExpenseFormOpen(o => !o); } }}
+                className="bg-indigo-600 p-6 flex items-center justify-between gap-3 cursor-pointer select-none"
+              >
+                <div className="flex items-center gap-3 min-w-0">
+                   <div className="p-2.5 bg-white/10 rounded-xl shrink-0">
                     <Receipt className="w-5 h-5 text-white" />
                    </div>
-                   <div>
+                   <div className="min-w-0">
                     <h3 className="text-white font-black text-lg tracking-tight uppercase">
                       {editingExpense ? 'Modifica Spesa' : 'Nuova Spesa'}
                     </h3>
@@ -758,7 +783,13 @@ export default function AdminCondoDetail({ condo, onBack }: AdminCondoDetailProp
                     </p>
                    </div>
                 </div>
+                {isExpenseFormOpen || editingExpense ? (
+                  <ChevronUp className="w-5 h-5 text-white/60 shrink-0" />
+                ) : (
+                  <ChevronDown className="w-5 h-5 text-white/60 shrink-0" />
+                )}
               </div>
+              {(isExpenseFormOpen || editingExpense) && (
               <form onSubmit={handleAddExpense}>
                 <CardContent className="space-y-6 p-6 pt-6">
                   <div className="space-y-2">
@@ -831,6 +862,7 @@ export default function AdminCondoDetail({ condo, onBack }: AdminCondoDetailProp
                   )}
                 </CardFooter>
               </form>
+              )}
             </Card>
 
             <Card className="order-1 lg:order-2 lg:col-span-2 rounded-2xl border border-slate-200 p-0 overflow-hidden shadow-xl shadow-slate-200/50">
@@ -1032,17 +1064,29 @@ export default function AdminCondoDetail({ condo, onBack }: AdminCondoDetailProp
         <TabsContent value="payments">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             <Card className="order-2 lg:order-1 lg:col-span-1 h-fit rounded-2xl border border-slate-200 lg:sticky lg:top-24 shadow-xl shadow-slate-200/50 overflow-hidden">
-               <div className="bg-emerald-600 p-6">
-                <div className="flex items-center gap-3">
-                   <div className="p-2.5 bg-white/10 rounded-xl">
+               <div
+                role="button"
+                tabIndex={0}
+                onClick={() => setIsPaymentFormOpen(o => !o)}
+                onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setIsPaymentFormOpen(o => !o); } }}
+                className="bg-emerald-600 p-6 flex items-center justify-between gap-3 cursor-pointer select-none"
+              >
+                <div className="flex items-center gap-3 min-w-0">
+                   <div className="p-2.5 bg-white/10 rounded-xl shrink-0">
                     <CreditCard className="w-5 h-5 text-white" />
                    </div>
-                   <div>
-                    <h3 className="text-white font-black text-lg tracking-tight uppercase">Gestione Incassi</h3>
+                   <div className="min-w-0">
+                    <h3 className="text-white font-black text-lg tracking-tight uppercase">{editingPayment ? 'Modifica Pagamento' : 'Gestione Incassi'}</h3>
                     <p className="text-xs text-white/50 uppercase font-black tracking-[0.2em] mt-0.5">Rate e Canoni di Locazione</p>
                    </div>
                 </div>
+                {isPaymentFormOpen || editingPayment ? (
+                  <ChevronUp className="w-5 h-5 text-white/60 shrink-0" />
+                ) : (
+                  <ChevronDown className="w-5 h-5 text-white/60 shrink-0" />
+                )}
               </div>
+              {(isPaymentFormOpen || editingPayment) && (
               <form onSubmit={handleAddPayment}>
                 <CardContent className="space-y-6 p-6 pt-6">
                   <div className="space-y-2">
@@ -1188,6 +1232,7 @@ export default function AdminCondoDetail({ condo, onBack }: AdminCondoDetailProp
                   )}
                 </CardFooter>
               </form>
+              )}
             </Card>
 
             <div className="order-1 lg:order-2 lg:col-span-2 space-y-6">
