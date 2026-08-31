@@ -61,6 +61,13 @@
 }
 
 @utility pro-input {
+  /* SelectTrigger's own base class is w-fit (sized to the current value's
+     text), unlike Input which is w-full. Since SelectContent's popup width
+     matches the trigger (w-(--anchor-width)), a short current value made
+     the whole dropdown too narrow for its longer option labels, clipping
+     them. pro-input is used on every text field and select alike, so
+     forcing w-full here fixes it everywhere consistently. */
+  width: 100%;
   background-color: var(--color-white);
   border: 1.5px solid var(--color-slate-200);
   color: var(--color-slate-900);
@@ -219,6 +226,18 @@
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
   }
+}
+
+/* SelectTrigger's own base class is w-fit (sized to the current value's
+   text, e.g. "Pendente"), and it wins over pro-input's width:100% since
+   both are plain Tailwind utility classes of equal specificity and w-fit
+   happens to be generated later in the stylesheet. Since the dropdown
+   popup width matches the trigger width, a short current value made the
+   whole menu too narrow for longer option labels ("Pagato Parzialmente"),
+   clipping their text. This unlayered rule always wins regardless of
+   utility generation order. */
+[data-slot="select-trigger"] {
+  width: 100%;
 }
 
 :root {

@@ -952,7 +952,7 @@ export default function GlobalCreditsView() {
                   <p className="text-slate-400 font-bold uppercase text-xs tracking-[0.2em] mt-2">Aggiornamento contabile globale</p>
                 </div>
                 <form onSubmit={handleUpdate}>
-                  <CardContent className="space-y-6 rotate-0 p-8">
+                  <CardContent className="space-y-6 p-8">
                     <div className="space-y-2">
                       <Label className="text-slate-900 font-black text-xs uppercase tracking-widest opacity-60">Titolo Credito</Label>
                       <Input 
